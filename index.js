@@ -90,12 +90,12 @@ function parseInput(rplyToken, inputStr) {
         }                   
          //cc判定在此
         if (inputStr.toLowerCase().match(/^cc/)!= null) return CoC7th(inputStr.toLowerCase()) ;      
-        else
         //pbta判定在此
-        if (inputStr.toLowerCase().match(/^pb/)!= null) return pbta(inputStr.toLowerCase()) ;      
-        else
-        //擲骰判定在此        
-        if (inputStr.match(/\w/)!=null && inputStr.toLowerCase().match(/d/)!=null) {
+		else if (inputStr.toLowerCase().match(/^pb/)!= null) return pbta(inputStr.toLowerCase()) ;      
+		//艦娘判定
+		else if(inputStr.toLowerCase().match(/^kan/)!= null)
+		//擲骰判定在此
+		else if (inputStr.match(/\w/)!=null && inputStr.toLowerCase().match(/d/)!=null) {
           return nomalDiceRoller(inputStr);
         }
         else
@@ -188,6 +188,38 @@ function RollDice(inputStr){
   return finalStr;
 }
                                                                      
+
+																	 
+																	 
+																	 
+
+
+																	 
+																	 
+																	 
+//艦娘判定
+function kan(inputStr)
+{
+	//事故表
+	if (inputStr.toLowerCase().match('act') != null)
+	{
+		
+		let rplyArr=['\事故表(1)：太好了！什麼都沒發生。',
+		 '\事故表(2)：意外的反應。將該判定使用的個性的屬性(【長處】跟【弱點】顛倒過來。自己進行的判定以外時，無視此效果',
+		 '\事故表(3)：咦...大失態！對該角色持有【感情值】的角色，全員的應援欄填入標記(チェック)。',
+		 '\事故表(4)：被奇妙的貓附身。在周回(サイクル)或艦隊戰結束前，自己的行為判定受到－１的減值(此效果最多累積到－２減值)。',
+		 '\事故表(5)：好痛！造成１個損傷。如果是在艦隊戰中，跟自己在同個航行序列的己方艦也受到１個損傷。',
+		 '\事故表(6)：嗚嗚，過頭了！自己的【行動力】減少１Ｄ６點。'];
+    return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
+		
+	}
+	else
+		return undefined;
+	
+}
+
+
+
 
 //PBTA判定在這裡
 function pbta(inputStr){
