@@ -101,7 +101,7 @@ function parseInput(rplyToken, inputStr) {
         else
         //鴨霸獸指令開始於此
         if (inputStr.match('鴨霸獸') != null) return YabasoReply(inputStr) ;
-        else return "主人，我在這裡";
+        else return undefined;
         
       }
 
