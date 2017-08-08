@@ -93,7 +93,7 @@ function parseInput(rplyToken, inputStr) {
         //pbta判定在此
 		else if (inputStr.toLowerCase().match(/^pb/)!= null) return pbta(inputStr.toLowerCase()) ;      
 		//艦娘判定
-		else if(inputStr.toLowerCase().match(/^kan/)!= null)
+		else if(inputStr.toLowerCase().match(/^kan/)!= null) return kan(inputStr.toLowerCase());
 		//擲骰判定在此
 		else if (inputStr.match(/\w/)!=null && inputStr.toLowerCase().match(/d/)!=null) {
           return nomalDiceRoller(inputStr);
