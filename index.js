@@ -459,7 +459,15 @@ function kan(inputStr)
 		replStr +='暴走表：rnt\n';
 		replStr +='戰場表：szn\n';
 		replStr +='戰果表：snt\n';
-		replStr +='特殊表：spsnt\n';
+		replStr +='特殊戰果表：spsnt\n';
+		replStr +='普通開發表：dvt\n';
+		replStr +='装備１種表：wp1t\n';
+		replStr +='装備２種表：wp2t\n';
+		replStr +='装備３種表：wp3t\n';
+		replStr +='装備４種表：wp4t\n';
+		replStr +='炮類開發表：wpfa\n';
+		replStr +='艦載機開發表：wpcn\n';
+		replStr +='特殊開發表：wpmc\n';
 		return replStr;
 	}
 	else
