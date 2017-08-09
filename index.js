@@ -94,6 +94,7 @@ function parseInput(rplyToken, inputStr) {
 		else if (inputStr.match(/\w/)!=null && inputStr.toLowerCase().match(/d/)!=null) {
           return nomalDiceRoller(inputStr);
         }
+		else if(inputStr.toLowerCase().match(/^隨機/)!=null) return choice(inputStr.toLowerCase())
 		else if(inputStr.toLowerCase().match(/^明日香/)!=null) return asuka(inputStr.toLowerCase())
 		else return undefined;
         
@@ -295,7 +296,15 @@ function Dice(diceSided){
         }              
 
 
-
+function choice(inputStr)
+{
+	let itemArray = inputStr.split(' ');
+	itemArray = itemArray.slice(1,itemArray.length);
+	let replStr = '[';
+	replStr +=itemArray +']→';
+	replStr += itemArray[Math.floor((Math.random() * (itemArray.length)) + 0)];
+	return replStr;
+}
 		
 function asuka(inputStr)
 {
