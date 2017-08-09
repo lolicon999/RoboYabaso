@@ -465,8 +465,8 @@ function kan(inputStr)
 		replStr +='装備２種表：wp2t\n';
 		replStr +='装備３種表：wp3t\n';
 		replStr +='装備４種表：wp4t\n';
-		replStr +='炮類開發表：wpfa\n';
-		replStr +='艦載機開發表：wpcn\n';
+		replStr +='炮類開發表：wpcn\n';
+		replStr +='艦載機開發表：wpfa\n';
 		replStr +='特殊開發表：wpmc\n';
 		return replStr;
 	}
