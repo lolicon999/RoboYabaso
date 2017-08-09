@@ -191,10 +191,7 @@ function RollDice(inputStr){
 function kan(inputStr)
 {
 	
-	if()
-	{
-		
-	}
+
 	//事故表
 	if (inputStr.toLowerCase().match('act') != null)
 	{
@@ -286,7 +283,6 @@ function kan(inputStr)
 		replStr +='戰場表：szn\n';
 		return replStr;
 	}
-	else if()
 	else
 		return undefined;
 	
