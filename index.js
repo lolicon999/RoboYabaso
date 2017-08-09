@@ -311,7 +311,7 @@ function choice(inputStr)
 		replStr += ','
 	}
 	replyStr = replyStr.substring(0, replyStr.length - 1) + ']';
-	replyStr += '→' + itemArray[Math.floor((Math.random() * (rplyArr.length)) + 0)];
+	replyStr += '→' + itemArray[Math.floor((Math.random() * (itemArray.length)) + 0)];
 	return replyStr;
 }
 		
