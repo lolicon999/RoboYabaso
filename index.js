@@ -88,7 +88,7 @@ function parseInput(rplyToken, inputStr) {
         _isNaN = function(obj) {
          return isNaN(parseInt(obj));
         }                   
-
+		//艦娘擲骰
 		if(inputStr.toLowerCase().match(/^kan/)!= null) return kan(inputStr.toLowerCase());
 		//擲骰判定在此
 		else if (inputStr.match(/\w/)!=null && inputStr.toLowerCase().match(/d/)!=null) {
@@ -284,6 +284,7 @@ function kan(inputStr)
 		replStr +='交流表：evkt\n';
 		replStr +='暴走表：rnt\n';
 		replStr +='戰場表：szn\n';
+		return replStr;
 	}
 	else if()
 	else
@@ -298,19 +299,7 @@ function Dice(diceSided){
         }              
 
 
-function choice(inputStr)
-{
-	/*let itemArray = inputStr.split(' ');
-	let replyStr = '[';
-	for(int i = 1;i<itemArray.length;i++)
-	{
-		replStr += itemArray[i];
-		replStr += ','
-	}
-	replyStr = replyStr.substring(0, replyStr.length - 1) + ']';
-	replyStr += '→' + itemArray[Math.floor((Math.random() * (itemArray.length)) + 0)];
-	return replyStr;*/
-}
+
 		
 function asuka(inputStr)
 {
