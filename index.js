@@ -286,7 +286,6 @@ function kan(inputStr)
 		replStr +='交流表：evkt\n';
 		replStr +='暴走表：rnt\n';
 		replStr +='戰場表：szn\n';
-		return replStr;
 	}
 	else if()
 	else
