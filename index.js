@@ -525,7 +525,18 @@ function choice(inputStr)
 function asuka(inputStr)
 {
 	
-	
-	return '主人，我在這裡';
+	replArr = [
+	"主人，我在這裡",
+	"主人，請不要這樣",
+	"主人，請不要隨便碰我"
+	"看招，烈焰十字斬",
+	"來吧，決鬥，我的回合，抽排",
+	"主人，我在課個一單就好，給我錢啦"
+	"主人，請不要我講話",
+	"主人，是蘿莉控嗎?",
+	"主人，別擔心，我在這裡喔。",
+	"主人，好乖好乖，不要哭嘛~"
+	];
+	return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	
 }
