@@ -447,12 +447,41 @@ function kan(inputStr)
 		let value = eval(RollDice('2d6').toString());
 		return rplyArr[eval(value)-2];
 	}
+	//道具表
+	else if (inputStr.toLowerCase().match('itt') !=null)
+	{
+		let rplyArr = [
+		'道具表(1) → 冰淇淋：隨時都能當成輔助行動來使用。自己的【行動力】回復１Ｄ６點。',
+		'道具表(2) → 羊羹：只可以在鎮守府階段中當作輔助行動。在艦隊戰中使用需要替代掉攻擊。選擇任一角色為目標，目標的【行動力】回復１Ｄ６點。在艦隊戰中使用時，只能選同航行序列的角色為目標。',
+		'道具表(3) → 開發資材：只能在鎮守府階段當作輔助行動使用。進行一次開發。\n以這個效果進行的開發，如果對結果不滿意時，可以重新骰一次「開發表」。',
+		'道具表(4) → 高速修復材：只能在要入渠時當作輔助行動使用。使用這個道具時，立刻進行入渠的損傷回復（原本是在幕結束時才進行）。此外，使用這個道具時，該幕不需要休息一次。',
+		'道具表(5) → 應急修理專員：在自己被擊沉時當作輔助行動使用。自己受的損傷回復到只有３個。',
+		'道具表(6) → 回憶的物品：任何時間都能當作輔助行動使用。選擇任一角色為目標。玩家要說出該道具與目標間回憶的內容，之後目標對自己ＰＣ的【感情值】上升１點。'
+		];
+		
+		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
+	}
+	//感情表
+	else if (inputStr.toLowerCase().match('et') !=null)
+	{
+		let rplyArr = [
+		'感情表(1) → 可愛(かわいい)／噁心(むかつく)',
+		'感情表(2) → 厲害(すごい)／失望(ざんねん)',
+		'感情表(3) → 愉快(たのしい)／恐怖(こわい)',
+		'感情表(4) → 帥氣(かっこいい)／擔心(しんぱい)',
+		'感情表(5) → 寵愛(いとしい)／想被注意(かまってほしい)',
+		'感情表(6) → 最喜歡(だいすき)／最討厭(だいっきらい)'
+		];
+		
+		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
+	}
 	else if(inputStr.toLowerCase().match('help') != null)
 	{
 		let replStr ='';
 		replStr +='各位艦娘跟提督們，歡迎使用明日香的指骰功能\n';
 		replStr +='以下是支援的骰表\n';
 		replStr +='請在前面加上 kan 進行艦娘rpg系統擲骰\n';
+		replStr +='感情表：act\n';
 		replStr +='事故表：act\n';
 		replStr +='日常表：evnt\n';
 		replStr +='交流表：evkt\n';
@@ -468,6 +497,7 @@ function kan(inputStr)
 		replStr +='炮類開發表：wpcn\n';
 		replStr +='艦載機開發表：wpfa\n';
 		replStr +='特殊開發表：wpmc\n';
+		replStr +='道具表：itt'
 		return replStr;
 	}
 	else
