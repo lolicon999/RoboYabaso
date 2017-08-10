@@ -525,7 +525,7 @@ function choice(inputStr)
 function asuka(inputStr)
 {
 	
-	replArr = [
+	rplyArr = [
 	"主人，我在這裡",
 	"主人，請不要這樣",
 	"主人，請不要隨便碰我"
