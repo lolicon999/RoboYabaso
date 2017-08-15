@@ -691,19 +691,19 @@ function luck()
 	"恭喜，這裡是特別獎，可以得到明日香的摸摸頭一次呢(摸摸~摸摸",
 	];
 	let dice = Math.floor((Math.random()*1000+1));
-	if (dice<=20) return ans[0];
-	else if (dice<=90) return ans[1];
-	else if (dice<=160) return ans[2];
-	else if (dice<=250) return ans[3];
-	else if (dice<=363) return ans[4];
-	else if (dice<=444) return ans[5];
-	else if (dice<=525) return ans[6];
-	else if (dice<=600) return ans[7];
-	else if (dice<=720) return ans[8];
-	else if (dice<=825) return ans[9];
-	else if (dice<=929) return ans[10];
-	else if (dice<=989) return ans[11];
-	else if (dice<=1000) return ans[12];
+	if (dice<=20) return replyArr[0];
+	else if (dice<=90) return replyArr[1];
+	else if (dice<=160) return replyArr[2];
+	else if (dice<=250) return replyArr[3];
+	else if (dice<=363) return replyArr[4];
+	else if (dice<=444) return replyArr[5];
+	else if (dice<=525) return replyArr[6];
+	else if (dice<=600) return replyArr[7];
+	else if (dice<=720) return replyArr[8];
+	else if (dice<=825) return replyArr[9];
+	else if (dice<=929) return replyArr[10];
+	else if (dice<=989) return replyArr[11];
+	else if (dice<=1000) return replyArr[12];
 	else return undefined;
 	
 }
