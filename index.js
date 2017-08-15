@@ -96,6 +96,7 @@ function parseInput(rplyToken, inputStr) {
         }
 		else if(inputStr.toLowerCase().match(/^隨機/)!=null) return choice(inputStr.toLowerCase())
 		else if(inputStr.toLowerCase().match(/^明日香/)!=null) return asuka(inputStr.toLowerCase())
+		else if (inStr.match(/運勢|運氣/)!=null) return luck();
 		else return undefined;
         
       }
@@ -481,12 +482,12 @@ function kan(inputStr)
 		replStr +='各位艦娘跟提督們，歡迎使用明日香的指骰功能\n';
 		replStr +='以下是支援的骰表\n';
 		replStr +='請在前面加上 kan 進行艦娘rpg系統擲骰\n';
-		replStr +='感情表：act\n';
+		replStr +='感情表：et\n';
 		replStr +='事故表：act\n';
 		replStr +='日常表：evnt\n';
 		replStr +='交流表：evkt\n';
 		replStr +='暴走表：rnt\n';
-		replStr +='戰場表：szn\n';
+		replStr +='戰場表：snz\n';
 		replStr +='戰果表：snt\n';
 		replStr +='特殊戰果表：spsnt\n';
 		replStr +='普通開發表：dvt\n';
@@ -516,6 +517,7 @@ function choice(inputStr)
 {
 	let itemArray = inputStr.split(' ');
 	itemArray = itemArray.slice(1,itemArray.length);
+	if(itemArray.length<2) return undefined;
 	let replStr = '[';
 	replStr +=itemArray +']→';
 	replStr += itemArray[Math.floor((Math.random() * (itemArray.length)) + 0)];
@@ -637,11 +639,13 @@ function asuka(inputStr)
 		replyStr += '下面是明日香會做的事\n';
 		replyStr += '想要知道艦娘rpg系統值骰指令 請打\"kan help\"\n';
 		replyStr += '若想要跟我講講話，在一開始叫我的名字就好\n';
+		replyStr += '在我名字後打上NC的傾向，會有別的對話喔，像是  明日香 愛麗絲 ，每個傾向共10句，全部共70句對話\n';
 		replyStr += '因為還是不完整的人偶，會有時停擺\n';
 		replyStr += '這時有兩種可能，一個是主人正在增加我的機能\n';
 		replyStr += '另一個是整個迴路停擺\n';
 		replyStr += '總之，有問題的話請連絡我的主人:維維\n';
 		replyStr += 'appiedavid777@gmail.com\n';
+		return  replyStr;
 	}
 	else
 	{
@@ -649,7 +653,7 @@ function asuka(inputStr)
 		"主人，我在這裡",
 		"主人，請不要這樣",
 		"主人，請不要隨便碰我",
-		"看招，烈焰十字斬",
+		"主人，抱抱我",
 		"來吧，決鬥，我的回合，抽牌",
 		"主人，變態，請不要靠近我",
 		"主人，請不要跟我講話",
@@ -663,4 +667,56 @@ function asuka(inputStr)
 	
 	
 	
+	
+	
+	
 }
+
+//運勢 運氣
+function luck()
+{
+	replyArr =[
+	"超幸運的一天，骰子女神眷顧你，骰10個大成功也不是夢呢",
+	"大吉，超幸運的，絕對會成功的",
+	"中吉，很不錯呢，事情會很順利的",
+	"小吉，這是好機會，趁著勢頭往前吧",
+	"半吉，加油，是表現的好機會",
+	"末吉，雖然有著一些運氣，但不把握的話是沒辦法留住的呢。",
+	"末小吉，很微妙的運氣呢，這時用實力證明自己吧",
+	"凶，雖然事情可能會有些不順利，這時就用努力撐過去吧，明日香會在旁邊幫你加油的",
+	"小凶，只要撐過這段時間，好運一定會降臨的，FIGHT！",
+	"半凶，就算碰到不順利的事，也沒有人會怪你的喔，整頓好心情，邁向明天吧",
+	"末凶，事情不會變得更糟了，抱著樂觀的心情上吧，想跟我傾訴也沒關西的喔",
+	"大凶，這樣的運氣，就算連骰5個大失敗也有可能呢，啊！請不要靠近我，不然我也會變得不幸的",
+	"恭喜，這裡是特別獎，可以得到明日香的摸摸頭一次呢(摸摸~摸摸",
+	];
+	let dice = Math.floor((Math.random()*1000+1));
+	if (dice<=20) return ans[0];
+	else if (dice<=90) return ans[1];
+	else if (dice<=160) return ans[2];
+	else if (dice<=250) return ans[3];
+	else if (dice<=363) return ans[4];
+	else if (dice<=444) return ans[5];
+	else if (dice<=525) return ans[6];
+	else if (dice<=600) return ans[7];
+	else if (dice<=720) return ans[8];
+	else if (dice<=825) return ans[9];
+	else if (dice<=929) return ans[10];
+	else if (dice<=989) return ans[11];
+	else if (dice<=1000) return ans[12];
+	else return undefined;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
