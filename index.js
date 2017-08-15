@@ -524,7 +524,7 @@ function nc(inputStr)
 		if(line[1]!='')
 		{
 			correctionValue = parseInt(line[1]);
-			document.writeln(correctionValue);
+			
 		}
 		for(let i = 0;i<line[0];i++)
 		{
@@ -534,11 +534,11 @@ function nc(inputStr)
 		
 		let replyStr = "[";
 		replyStr += diceArr;
-		replyStr += "]"
+		replyStr += "]";
 		replyStr += correctionValue;
 		replyStr += "→ [";
 		replyStr += resultArr;
-		replyStr += "]→"
+		replyStr += "]→";
 		if(parseInt(Math.max(...resultArr))>10) replyStr += "大成功";
 		else if(parseInt(Math.max(...resultArr))>=6) replyStr += "成功";
 		else if(parseInt(Math.min(...resultArr))<2) replyStr += "大失敗";
