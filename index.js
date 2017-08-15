@@ -94,8 +94,10 @@ function parseInput(rplyToken, inputStr) {
 		else if (inputStr.match(/\w/)!=null && inputStr.toLowerCase().match(/d/)!=null) {
           return nomalDiceRoller(inputStr);
         }
-		else if(inputStr.toLowerCase().match(/^隨機/)!=null) return choice(inputStr.toLowerCase())
-		else if(inputStr.toLowerCase().match(/^明日香/)!=null) return asuka(inputStr.toLowerCase())
+		//NC擲骰
+		else if (inputStr.toLowerCase().match(/^\dnc/)!=null) return nc(inputStr.toLowerCase()); 
+		else if(inputStr.toLowerCase().match(/^隨機/)!=null) return choice(inputStr.toLowerCase());
+		else if(inputStr.toLowerCase().match(/^明日香/)!=null) return asuka(inputStr.toLowerCase());
 		else if (inputStr.match(/運勢|運氣/)!=null) return luck();
 		else return undefined;
         
@@ -505,8 +507,51 @@ function kan(inputStr)
 		return undefined;
 	
 }
+//NC擲骰
+function nc(inputStr)
+{
+	let ncLine = inputStr.split(' ')[0];
+	let line = ncLine.split('nc');
+	if(line[0]>4)
+	{
+		return "行動判定加骰最多到4顆喔";
+	}
+	else
+	{
+	
+		let diceArr = [];
+		let resultArr = [];
+		let correctionValue = 0;
+		if(line[1]!='')
+		{
+			correctionValue = parseInt(line[1]);
+			document.writeln(correctionValue);
+		}
+		for(let i = 0;i<line[0];i++)
+		{
+			diceArr[i] = Math.floor(Math.random()*10+1);
+			resultArr[i] = diceArr[i] + correctionValue;
+		}
+		
+		let replyStr = "[";
+		replyStr += diceArr;
+		replyStr += "]"
+		replyStr += correctionValue;
+		replyStr += "→ [";
+		replyStr += resultArr;
+		replyStr += "]→"
+		if(parseInt(Math.max(...resultArr))>10) replyStr += "大成功";
+		else if(parseInt(Math.max(...resultArr))>=6) replyStr += "成功";
+		else if(parseInt(Math.min(...resultArr))<2) replyStr += "大失敗";
+		else replyStr += "失敗";
+		return replyStr;
+	}
+}
 
 
+
+
+//NC擲骰結束
 
 function Dice(diceSided){          
           return Math.floor((Math.random() * diceSided) + 1)
