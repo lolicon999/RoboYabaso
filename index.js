@@ -90,12 +90,12 @@ function parseInput(rplyToken, inputStr) {
         }                   
 		//艦娘擲骰
 		if(inputStr.toLowerCase().match(/^kan/)!= null) return kan(inputStr.toLowerCase());
+		//NC擲骰
+		else if (inputStr.toLowerCase().match(/^\dnc/)!=null) return nc(inputStr.toLowerCase()); 
 		//擲骰判定在此
 		else if (inputStr.match(/\w/)!=null && inputStr.toLowerCase().match(/d/)!=null) {
           return nomalDiceRoller(inputStr);
         }
-		//NC擲骰
-		else if (inputStr.toLowerCase().match(/^\dnc/)!=null) return nc(inputStr.toLowerCase()); 
 		else if(inputStr.toLowerCase().match(/^隨機/)!=null) return choice(inputStr.toLowerCase());
 		else if(inputStr.toLowerCase().match(/^明日香/)!=null) return asuka(inputStr.toLowerCase());
 		else if (inputStr.match(/運勢|運氣/)!=null) return luck();
@@ -518,7 +518,6 @@ function nc(inputStr)
 	}
 	else
 	{
-	
 		let diceArr = [];
 		let resultArr = [];
 		let correctionValue = 0;
