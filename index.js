@@ -96,7 +96,7 @@ function parseInput(rplyToken, inputStr) {
         }
 		else if(inputStr.toLowerCase().match(/^隨機/)!=null) return choice(inputStr.toLowerCase())
 		else if(inputStr.toLowerCase().match(/^明日香/)!=null) return asuka(inputStr.toLowerCase())
-		else if (inStr.match(/運勢|運氣/)!=null) return luck();
+		else if (inputStr.match(/運勢|運氣/)!=null) return luck();
 		else return undefined;
         
       }
