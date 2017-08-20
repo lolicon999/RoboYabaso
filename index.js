@@ -92,13 +92,15 @@ function parseInput(rplyToken, inputStr) {
 		if(inputStr.toLowerCase().match(/^kan/)!= null) return kan(inputStr.toLowerCase());
 		//NC擲骰
 		else if (inputStr.toLowerCase().match(/^\dnc/)!=null) return nc(inputStr.toLowerCase()); 
-		//擲骰判定在此
-		else if (inputStr.match(/\w/)!=null && inputStr.toLowerCase().match(/d/)!=null) {
-          return nomalDiceRoller(inputStr);
-        }
+		else if (inputStr.toLowerCase().match(/^\dna/)!=null) return na(inputStr.toLowerCase()); 
 		else if(inputStr.toLowerCase().match(/^隨機/)!=null) return choice(inputStr.toLowerCase());
 		else if(inputStr.toLowerCase().match(/^明日香/)!=null) return asuka(inputStr.toLowerCase());
 		else if (inputStr.match(/運勢|運氣/)!=null) return luck();
+		else if(inputStr.match(/^help/)!=null) return help();
+		else if (inputStr.match(/\w/)!=null && inputStr.toLowerCase().match(/d/)!=null) {
+          //擲骰判定
+		  return nomalDiceRoller(inputStr);
+        }
 		else return undefined;
         
       }
@@ -478,6 +480,48 @@ function kan(inputStr)
 		
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
+	//大規模部隊表
+	else if(inputStr.toLowerCase().match('lsft') != null)
+	{
+		let rplyArr = [
+		'大規模部隊表(1) → 表情駭人的人型深海棲艦群。是敵方的『水上打擊部隊』。威脅力：10',
+		'大規模部隊表(2) → 烏雲一般的艦載機成群出現。是敵方的『空母機動部隊』。威脅力：9',
+		'大規模部隊表(3) → 黝黑的艦影發出令人膽寒的咆嘯。是敵方的『水雷戰隊』。威脅力：8',
+		'大規模部隊表(4) → 無輪從哪個方向接近都會遭到雷擊。是敵方的『潛水艦部隊』。威脅力：7',
+		'大規模部隊表(5) → 敵人多半是在運輸重要的資源。是敵方的『運輸部隊』。威脅力：6',
+		'大規模部隊表(6) → 海面似乎也被染成漆黑一片，大事不妙。是敵方的『主力部隊』。威脅力：12'
+		];
+		
+		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
+	}
+	//勝利表
+	else if(inputStr.toLowerCase().match('lfvt') != null)
+	{
+		let rplyArr = [
+		'艦隊勝利表(1) → 支援砲擊！艦隊決戰開始時，選擇敵艦其中一人，受到一損傷',
+		'艦隊勝利表(2) → 士氣高昂！艦隊決戰時，該ＰＣ的【命中力】＋１',
+		'艦隊勝利表(3) → 士氣高昂！艦隊決戰時，該ＰＣ的【火力】＋１',
+		'艦隊勝利表(4) → 士氣高昂！艦隊決戰時，該ＰＣ的【裝甲力】＋１',
+		'艦隊勝利表(5) → 士氣高昂！艦隊決戰時，該ＰＣ的【迴避力】＋１',
+		'艦隊勝利表(6) → 感情加深！伴隨艦對該ＰＣ的【感情值】＋１'
+		];
+		
+		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
+	}
+	//敗北表
+	else if(inputStr.toLowerCase().match('lfdt') != null)
+	{
+		let rplyArr = [
+		'艦隊敗北表(1) → 敵方支援砲擊！ＰＣ中隨機選擇一人，受到一損傷',
+		'艦隊敗北表(2) → 中了敵人的詭計！ＰＣ中隨機選擇一人，骰一次『事故表』',
+		'艦隊敗北表(3) → 被敵方艦隊追擊了！艦隊決戰時，戰場為『Ｔ字不利』',
+		'艦隊敗北表(4) → 敵人與本隊合流。艦隊決戰開始時，若除了『主力部隊』外還有未被殲滅的部隊，則發生『敵方部隊支援』，艦隊決戰中，能用該部隊的編號，對ＰＣ的迴避進行判定妨礙',
+		'艦隊敗北表(5) → 伴隨艦在作戰行動中失蹤。艦隊決戰開始時，敵方旗艦能從此伴隨艦習得的戰術能力與固有能力中，任選一項，視為在艦隊決戰中習得此能力',
+		'艦隊敗北表(6) → 伴隨艦被轟沉。失去該伴隨艦，ＰＣ骰一次『暴走表』，附加暴走狀態'
+		];
+		
+		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
+	}
 	else if(inputStr.toLowerCase().match('help') != null)
 	{
 		let replStr ='';
@@ -500,7 +544,10 @@ function kan(inputStr)
 		replStr +='炮類開發表：wpcn\n';
 		replStr +='艦載機開發表：wpfa\n';
 		replStr +='特殊開發表：wpmc\n';
-		replStr +='道具表：itt'
+		replStr +='道具表：itt';
+		replStr += '大規模部隊表：lsft\n';
+		replStr += '艦隊勝利表：lfvt\n';
+		replStr += '艦隊敗北表：lfdt\n';
 		return replStr;
 	}
 	else
@@ -508,6 +555,7 @@ function kan(inputStr)
 	
 }
 //NC擲骰
+//行動判定
 function nc(inputStr)
 {
 	let ncLine = inputStr.split(' ')[0];
@@ -546,8 +594,54 @@ function nc(inputStr)
 		return replyStr;
 	}
 }
-
-
+命中判定
+function na(inputStr)
+{
+	let naLine = inputStr.split(' ')[0];
+	let line = naLine.split('nc');
+	if(line[0]>4)
+	{
+		return "行動判定加骰最多到4顆喔";
+	}
+	else
+	{
+		let diceArr = [];
+		let resultArr = [];
+		let correctionValue = 0;
+		if(line[1]!='')
+		{
+			correctionValue = parseInt(line[1]);
+			
+		}
+		for(let i = 0;i<line[0];i++)
+		{
+			diceArr[i] = Math.floor(Math.random()*10+1);
+			resultArr[i] = diceArr[i] + correctionValue;
+		}
+		
+		let replyStr = "[";
+		replyStr += diceArr;
+		replyStr += "]";
+		replyStr += correctionValue;
+		replyStr += "→ [";
+		replyStr += resultArr;
+		replyStr += "]→";
+		if(parseInt(Math.max(...resultArr))>10)
+		{
+			replyStr += "攻擊大成功，由攻擊方決定命中部位，並增加";
+			replyStr += (parseInt(Math.max(...resultArr))-10);
+			replyStr += "點傷害";
+		}
+		else if(parseInt(Math.max(...resultArr))==10) replyStr += "攻擊成功，命中頭部";
+		else if(parseInt(Math.max(...resultArr))==9) replyStr += "攻擊成功，命中手部";
+		else if(parseInt(Math.max(...resultArr))==8) replyStr += "攻擊成功，命中驅幹";
+		else if(parseInt(Math.max(...resultArr))==7) replyStr += "攻擊成功，命中足部";
+		else if(parseInt(Math.max(...resultArr))==6) replyStr += "攻擊成功，由受攻擊者決定命中部位";
+		else if(parseInt(Math.min(...resultArr))<2) replyStr += "大失敗，傷害轉嫁到範圍內友軍";
+		else replyStr += "攻擊失敗";
+		return replyStr;
+	}
+}
 
 
 //NC擲骰結束
@@ -581,7 +675,7 @@ function asuka(inputStr)
 		"姐姐們，不用擔心我，儘管發揮吧",
 		"姐姐們，這裡就交給我吧",
 		"別擔心的，我已經能照顧自己了",
-		"雖然我的力量很小，但我也像幫上姐姐們的忙",
+		"雖然我的力量很小，但我也想幫上姐姐們的忙",
 		"我是姐姐們的妹妹嘛，很幸福喔，就算在這個被毀滅的世界",
 		"抱歉呢，沒能幫上忙，下次一定會更努力的"
 		];
@@ -672,25 +766,6 @@ function asuka(inputStr)
 		];
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
-	//help
-	else if(inputStr.toLowerCase().match('help')!=null)
-	{
-		let replyStr = '';
-		replyStr += '大家好，我是人偶－明日香\n';
-		replyStr += '請各位好好善待我喔\n';
-		replyStr += '因為主人的技術還不純熟\n';
-		replyStr += '所以明日香有很多事情還不會做\n';
-		replyStr += '下面是明日香會做的事\n';
-		replyStr += '想要知道艦娘rpg系統值骰指令 請打\"kan help\"\n';
-		replyStr += '若想要跟我講講話，在一開始叫我的名字就好\n';
-		replyStr += '在我名字後打上NC的傾向，會有別的對話喔，像是  明日香 愛麗絲 ，每個傾向共10句，全部共70句對話\n';
-		replyStr += '因為還是不完整的人偶，會有時停擺\n';
-		replyStr += '這時有兩種可能，一個是主人正在增加我的機能\n';
-		replyStr += '另一個是整個迴路停擺\n';
-		replyStr += '總之，有問題的話請連絡我的主人:維維\n';
-		replyStr += 'appiedavid777@gmail.com\n';
-		return  replyStr;
-	}
 	else
 	{
 		rplyArr = [
@@ -703,7 +778,17 @@ function asuka(inputStr)
 		"主人，請不要跟我講話",
 		"主人，是蘿莉控嗎?",
 		"主人，別擔心，我在這裡喔。",
-		"主人，好乖好乖，不要哭嘛~"
+		"主人，好乖好乖，不要哭嘛~",
+		"主人，幫我撐個10秒",
+		"你再說什麼啊~~~",
+		"主人為什麼不注意我了呢，一定是那女人害的",
+		"只要這樣，主人就會只關心我一個人了",
+		"你的血是甚麼顏色的呢",
+		"粗乃丸，快點粗乃丸",
+		"限你們72小時內粗乃丸",
+		"可愛的我現在出現在你的時間軸囉",
+		"Cutely,lovely,shiny 魔法少女戰隊，隊長  明日香 參上",
+		"歡迎回來，主人，要先吃飯嗎，還是要先洗澡呢，還是....."
 		];
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];	
 		
@@ -752,7 +837,27 @@ function luck()
 	
 }
 
+function help()
+{
 
+	let replyStr = '';
+	replyStr += '大家好，我是人偶－明日香\n';
+	replyStr += '請各位好好善待我喔\n';
+	replyStr += '因為主人的技術還不純熟\n';
+	replyStr += '所以明日香有很多事情還不會做\n';
+	replyStr += '下面是明日香會做的事\n';
+	replyStr += '想要知道艦娘rpg系統值骰指令 請打\"kan help\"\n';
+	replyStr += '若想要跟我講講話，在一開始叫我的名字就好\n';
+	replyStr += '在我名字後打上NC的傾向，會有別的對話喔，像是  明日香 愛麗絲 ，每個傾向共10句，全部共70句對話\n';
+	replyStr += '隨機功能：在隨機後面打上要選擇的事物，例：隨機 1 2 3\n';
+	replyStr += '運勢功能，啟動語 是\"運勢\"跟\"運氣\"\n';
+	replyStr += '因為還是不完整的人偶，會有時停擺\n';
+	replyStr += '這時有兩種可能，一個是主人正在增加我的機能\n';
+	replyStr += '另一個是整個迴路停擺\n';
+	replyStr += '總之，有問題的話請連絡我的主人:維維\n';
+	replyStr += 'appiedavid777@gmail.com\n';
+	return  replyStr;
+}
 
 
 
