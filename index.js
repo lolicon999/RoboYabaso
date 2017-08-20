@@ -903,14 +903,16 @@ function help()
 	replyStr += '因為主人的技術還不純熟\n';
 	replyStr += '所以明日香有很多事情還不會做\n';
 	replyStr += '下面是明日香會做的事\n';
+	replyStr += 'NC系統值骰 nc 及 na 為行動判定及攻擊判定 以下列方法使用 3nc+1 或 2na+2\n 依戀表為對姊妹的依戀：snm\n對中立方的依戀：nnm\n對敵方的依戀：enm\n';
 	replyStr += '想要知道艦娘rpg系統值骰指令 請打\"kan help\"\n';
 	replyStr += '若想要跟我講講話，在一開始叫我的名字就好\n';
-	replyStr += '在我名字後打上NC的傾向，會有別的對話喔，像是  明日香 愛麗絲 ，每個傾向共10句，全部共70句對話\n';
+	replyStr += '在我名字後打上NC的傾向，會有別的對話喔，像是  明日香 愛麗絲 ，每個傾向共10句\n';
 	replyStr += '隨機功能：在隨機後面打上要選擇的事物，例：隨機 1 2 3\n';
 	replyStr += '運勢功能，啟動語 是\"運勢\"跟\"運氣\"\n';
 	replyStr += '因為還是不完整的人偶，會有時停擺\n';
 	replyStr += '這時有兩種可能，一個是主人正在增加我的機能\n';
 	replyStr += '另一個是整個迴路停擺\n';
+	replyStr += '不過，若是壞掉的話，你也叫不出這東西呢\n'
 	replyStr += '總之，有問題的話請連絡我的主人:維維\n';
 	replyStr += 'appiedavid777@gmail.com\n';
 	return  replyStr;
