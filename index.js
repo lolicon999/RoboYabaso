@@ -598,7 +598,7 @@ function nc(inputStr)
 function na(inputStr)
 {
 	let naLine = inputStr.split(' ')[0];
-	let line = naLine.split('nc');
+	let line = naLine.split('na');
 	if(line[0]>4)
 	{
 		return "行動判定加骰最多到4顆喔";
