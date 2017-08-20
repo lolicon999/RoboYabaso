@@ -594,7 +594,7 @@ function nc(inputStr)
 		return replyStr;
 	}
 }
-命中判定
+//命中判定
 function na(inputStr)
 {
 	let naLine = inputStr.split(' ')[0];
