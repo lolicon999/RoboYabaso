@@ -556,6 +556,7 @@ function kan(inputStr)
 		replStr +='事故表：act\n';
 		replStr +='日常表：evnt\n';
 		replStr +='交流表：evkt\n';
+		replStr +='遊玩表：evat\n';
 		replStr +='暴走表：rnt\n';
 		replStr +='戰場表：snz\n';
 		replStr +='戰果表：snt\n';
