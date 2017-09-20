@@ -274,7 +274,7 @@ function kan(inputStr)
 		
 	}
 	//演習表
-	else if(inputStr.toLowerCase().match('evat') != null)
+	else if(inputStr.toLowerCase().match('evet') != null)
 	{
 		let rplyArr=[
 		'\演習表(2)→大吵一架：＂「火雞」是什麼意思？別開玩笑了！＂在課堂中， 一個關於(關鍵字)的話題演變成了爭論。\n\n玩家使用跟關鍵字相關的個性進行判定，如果想不到就用《不服輸／性格６》\n達成：所有ＰＣ的聲援欄回復為未使用的狀態，且把艦隊名的一部分換成（關鍵字）。\n殘念：所有ＰＣ受到１點損傷。',
