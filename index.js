@@ -314,7 +314,7 @@ function kan(inputStr)
 		
 	}
 	//作戰表
-	else if(inputStr.toLowerCase().match('evt') != null)
+	else if(inputStr.toLowerCase().match('evst') != null)
 	{
 		let rplyArr=[
 		'\遠征表(2)→電子之眼：＂五十鈴什麼都看到了唷？＂ 使用最新的（關鍵字）技術掌握了敵艦隊的位置。\n\n幕玩家需依照提督對應（關鍵字）所挑選的指定個性進行判定，想不到的話就使用《電子戰／戰鬥2》進行判定。\n達成：下次艦隊戰時，敵方的裝甲力都減少1點(此效果不可疊加)。\n殘念：下次艦隊戰時，敵方的火力都增加1點。',
