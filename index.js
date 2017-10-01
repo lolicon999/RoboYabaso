@@ -133,8 +133,8 @@ function nomalDiceRoller(inputStr){
       if (DiceToRoll.match('d') == null) return undefined;
       finalStr = finalStr +'\n' + i + '# ' + DiceCal(DiceToRoll);
     }
-    if(finalStr.match('200D')!= null) finalStr = '欸欸，不支援200D以上擲骰；哪個時候會骰到兩百次以上？想被淨灘嗎？';
-    if(finalStr.match('D500')!= null) finalStr = '不支援D1和超過D500的擲骰；想被淨灘嗎？';
+    if(finalStr.match('200D')!= null) finalStr = '為什麼會需要丟到200次以上呢，明日香不明白。';
+    if(finalStr.match('D500')!= null) finalStr = '我不會D1跟D500以上的數字呢，而且為什麼會用到這麼大的骰子呢';
     
   } 
   
@@ -164,8 +164,8 @@ function DiceCal(inputStr){
   let equation = DiceToRoll;
   while(equation.match(/\d+d\d+/)!=null) {
     let tempMatch = equation.match(/\d+d\d+/);    
-    if (tempMatch.toString().split('d')[0]>200) return '欸欸，不支援200D以上擲骰；哪個時候會骰到兩百次以上？想被淨灘嗎？';
-    if (tempMatch.toString().split('d')[1]==1 || tempMatch.toString().split('d')[1]>500) return '不支援D1和超過D500的擲骰；想被淨灘嗎？';
+    if (tempMatch.toString().split('d')[0]>200) return '為什麼會需要丟到200次以上呢，明日香不明白。';
+    if (tempMatch.toString().split('d')[1]==1 || tempMatch.toString().split('d')[1]>500) return '我不會D1跟D500以上的數字呢，而且為什麼會用到這麼大的骰子呢';
     equation = equation.replace(/\d+d\d+/, RollDice(tempMatch));
   }
   
@@ -950,7 +950,10 @@ function asuka(inputStr)
 		"主人，很喜歡這樣嗎。",
 		"主人的腦袋終於壞掉了嗎",
 		"主人，請你用腦袋腦袋好好想想再說話好嗎。",
-		"主人，在這樣做的話我就要討厭你囉。"
+		"主人，在這樣做的話我就要討厭你囉。",
+		"好～厲～害～　是很會講幹話的朋友呢！",
+		"去死去死去死",
+		"( ﾟ∀ﾟ)ｱﾊﾊ八八ﾉヽﾉヽﾉヽﾉ＼ /＼/ ＼"
 		];
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];	
 		
