@@ -961,7 +961,9 @@ function asuka(inputStr)
 		"不要！",
 		"請容我拒絕，主人。",
 		"明日香也這麼覺得呢。",
-		"晚安，我先睡了，主人。"
+		"晚安，我先睡了，主人。",
+		"主人只需要明日香一個人就足夠了。",
+		"主人...，身上有其他女人的味道呢..."
 		];
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];	
 		
