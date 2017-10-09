@@ -930,7 +930,7 @@ function asuka(inputStr)
 		];
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
-	else if(inputStr.toLowerCase().match(/早安/) != null)
+	else if(inputStr.toLowerCase().match('早安') != null)
 	{
 		rplyArr = [
 		"主人，早安。",
@@ -942,7 +942,7 @@ function asuka(inputStr)
 		];
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
-	else if(inputStr.toLowerCase().match(/晚安/) != null)
+	else if(inputStr.toLowerCase().match('晚安') != null)
 	{
 		rplyArr = [
 		"主人，今天一天也辛苦了，好好睡一覺吧，晚安",
