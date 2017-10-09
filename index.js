@@ -184,7 +184,7 @@ function RollDice(inputStr){
   let comStr=inputStr.toString().toLowerCase();
   let finalStr = '(';
 
-  for (let i = 1; i <= comStr.split('d')[0]; i++) {
+  for (let i = 1; i <= comStr.split('d')[0]; i++) { 
     finalStr = finalStr + Dice(comStr.split('d')[1]) + '+';
      }
 
@@ -907,6 +907,50 @@ function asuka(inputStr)
 		];
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
+	else if(inputStr.toLowerCase().match(/鼓勵|安慰/) != null)
+	{
+		rplyArr = [
+		"主人，別擔心，我在這裡喔。",
+		"主人，好乖好乖，不要哭嘛~",
+		"今天也辛苦了，就讓明日香給你鼓勵吧",
+		"做得很好了喔",
+		"不用擔心，一切都會順利的",
+		"累的話就好好休息吧，主人",
+		"主人，不要放棄，再努力一點，就能看到成果了",
+		"主人真是愛撒嬌的孩子呢，明日香給你摸摸頭。",
+		"主人，可別把身體搞壞了，明日香很擔心呢",
+		"主人，工作告一個段落了嗎，那就好好的休息一下",
+		"主人，這麼晚還在工作嗎，明日香幫你做個消夜吧。",
+		"主人，真厲害呢，很努力了喔。",
+		"主人是好孩子，好孩子。",
+		"主人，很辛苦呢，不要太勉強了。",
+		"主人，發生了甚麼嗎，有什麼事的話，跟明日香說也沒關西的，明日香就是為了這個存在的嘛。",
+		"就讓明日香來治癒你一天的疲勞吧。",
+		"主人，別擔心，明日香一直在後面支持著你喔。"
+		];
+		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
+	}
+	else if(inputStr.toLowerCase().match(/早安/) != null)
+	{
+		rplyArr = [
+		"主人，早安。",
+		"主人，再不起來的話，明日香就要對你惡...作...劇...了喔。",
+		"主人，今天也打起精神，一起努力吧。",
+		"主人，早餐已經準備好了，快點下床來享用吧。",
+		"主人，別再賴床了，不然早餐要涼了喔。",
+		"主人，快起來！快起來！要遲到了拉！快起來！"
+		];
+		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
+	}
+	else if(inputStr.toLowerCase().match(/晚安/) != null)
+	{
+		rplyArr = [
+		"主人，今天一天也辛苦了，好好睡一覺吧，晚安",
+		"主人，要我唱搖籃曲給你聽嗎，真是愛撒嬌的主人呢。",
+		"主人，晚安了，祝你有個好夢。"
+		];
+		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
+	}
 	else
 	{
 		rplyArr = [
@@ -964,6 +1008,7 @@ function asuka(inputStr)
 		"晚安，我先睡了，主人。",
 		"主人只需要明日香一個人就足夠了。",
 		"主人...，身上有其他女人的味道呢..."
+		"主人的味道，喜歡"
 		];
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];	
 		
