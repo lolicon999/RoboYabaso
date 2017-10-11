@@ -930,6 +930,18 @@ function asuka(inputStr)
 		];
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
+	else if(inputStr.toLowerCase().match(/踩|罵/) != null)
+	{
+		rplyArr = [
+		"變態！下流！不要靠近我。",
+		"去死！你這變態！",
+		"主人，原來喜歡這樣啊。",
+		"(鄙視的眼神",
+		"阿～，原來是主人阿，我還以為不小心踩到垃圾了呢。",
+		"主人，會因為這樣而興奮嗎，真是受不了呢。"
+		];
+		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
+	}
 	else if(inputStr.toLowerCase().match('早安') != null)
 	{
 		rplyArr = [
