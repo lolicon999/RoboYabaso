@@ -974,7 +974,7 @@ function asuka(inputStr)
 		];
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
-	else if(inputStr.toLowerCase().match('維維') != null)
+	/*else if(inputStr.toLowerCase().match('維維') != null)
 	{
 		rplyArr = [
 		"是我最喜歡的主人喔❤",
@@ -983,7 +983,7 @@ function asuka(inputStr)
 		"主人，喜歡，喜歡，喜歡"
 		];
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-	}
+	}*/
 	else if(inputStr.toLowerCase().match('早安') != null)
 	{
 		rplyArr = [
