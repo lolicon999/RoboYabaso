@@ -1,6 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var https = require('https');  
+var https = require('https');
 var app = express();
 
 var jsonParser = bodyParser.json();
@@ -35,8 +35,8 @@ app.post('/', jsonParser, function(req, res) {
   console.log(msg);
   if (type == 'message' && msgType == 'text') {
     try {
-      rplyVal = parseInput(rplyToken, msg); 
-    } 
+      rplyVal = parseInput(rplyToken, msg);
+    }
     catch(e) {
       //rplyVal = randomReply();
       console.log('總之先隨便擺個跑到這邊的訊息，catch error');
@@ -44,9 +44,9 @@ app.post('/', jsonParser, function(req, res) {
   }
 
   if (rplyVal) {
-    replyMsgToLine(rplyToken, rplyVal); 
+    replyMsgToLine(rplyToken, rplyVal);
   } else {
-    console.log('Do not trigger'); 
+    console.log('Do not trigger');
   }
 
   res.send('ok');
@@ -67,14 +67,14 @@ function replyMsgToLine(rplyToken, rplyVal) {
     ]
   }
 
-  let rplyJson = JSON.stringify(rplyObj); 
-  
+  let rplyJson = JSON.stringify(rplyObj);
+
   var request = https.request(options, function(response) {
     console.log('Status: ' + response.statusCode);
     console.log('Headers: ' + JSON.stringify(response.headers));
     response.setEncoding('utf8');
     response.on('data', function(body) {
-      console.log(body); 
+      console.log(body);
     });
   });
   request.on('error', function(e) {
@@ -87,14 +87,14 @@ function parseInput(rplyToken, inputStr) {
         console.log('InputStr: ' + inputStr);
         _isNaN = function(obj) {
          return isNaN(parseInt(obj));
-        }                   
+        }
 		//艦娘擲骰
 		if(inputStr.toLowerCase().match(/^kan/)!= null) return kan(inputStr.toLowerCase());
 		//NC擲骰
-		else if (inputStr.toLowerCase().match(/^\dnc/)!=null) return nc(inputStr.toLowerCase()); 
+		else if (inputStr.toLowerCase().match(/^\dnc/)!=null) return nc(inputStr.toLowerCase());
 		else if (inputStr.toLowerCase().match(/^\dna/)!=null) return na(inputStr.toLowerCase());
-		else if (inputStr.toLowerCase().match(/^snm/)!=null) return snm(inputStr.toLowerCase()); 
-		else if (inputStr.toLowerCase().match(/^nnm/)!=null) return nnm(inputStr.toLowerCase()); 
+		else if (inputStr.toLowerCase().match(/^snm/)!=null) return snm(inputStr.toLowerCase());
+		else if (inputStr.toLowerCase().match(/^nnm/)!=null) return nnm(inputStr.toLowerCase());
 		else if (inputStr.toLowerCase().match(/^enm/)!=null) return enm(inputStr.toLowerCase());
 		//nc結束 其他功能開始
 		else if(inputStr.toLowerCase().match(/^隨機/)!=null) return choice(inputStr.toLowerCase());
@@ -106,15 +106,15 @@ function parseInput(rplyToken, inputStr) {
 		  return nomalDiceRoller(inputStr);
         }
 		else return undefined;
-        
+
       }
 
 
-        
+
 function nomalDiceRoller(inputStr){
-  
+
   //先定義要輸出的Str
-  let finalStr = '' ;  
+  let finalStr = '' ;
  //首先判斷是否是誤啟動（檢查是否有符合骰子格式）
   if (inputStr.toLowerCase().match(/\d+d\d+/) == null) return undefined;
 
@@ -135,48 +135,48 @@ function nomalDiceRoller(inputStr){
     }
     if(finalStr.match('200D')!= null) finalStr = '為什麼會需要丟到200次以上呢，明日香不明白。';
     if(finalStr.match('D500')!= null) finalStr = '我不會D1跟D500以上的數字呢，而且為什麼會用到這麼大的骰子呢';
-    
-  } 
-  
+
+  }
+
   else finalStr= '基本擲骰：' + DiceCal(mutiOrNot.toString());
-  
+
   if (finalStr.match('NaN')!= null||finalStr.match('undefined')!= null) return undefined;
   return finalStr;
 }
-        
+
 //作計算的函數
 function DiceCal(inputStr){
-  
+
   //首先判斷是否是誤啟動（檢查是否有符合骰子格式）
   if (inputStr.toLowerCase().match(/\d+d\d+/) == null) return undefined;
-    
+
   //排除小數點
   if (inputStr.toString().match(/\./)!=null)return undefined;
 
   //先定義要輸出的Str
-  let finalStr = '' ;  
-  
+  let finalStr = '' ;
+
   //一般單次擲骰
-  let DiceToRoll = inputStr.toString().toLowerCase();  
+  let DiceToRoll = inputStr.toString().toLowerCase();
   if (DiceToRoll.match('d') == null) return undefined;
-  
+
   //寫出算式
   let equation = DiceToRoll;
   while(equation.match(/\d+d\d+/)!=null) {
-    let tempMatch = equation.match(/\d+d\d+/);    
+    let tempMatch = equation.match(/\d+d\d+/);
     if (tempMatch.toString().split('d')[0]>200) return '為什麼會需要丟到200次以上呢，明日香不明白。';
     if (tempMatch.toString().split('d')[1]==1 || tempMatch.toString().split('d')[1]>500) return '我不會D1跟D500以上的數字呢，而且為什麼會用到這麼大的骰子呢';
     equation = equation.replace(/\d+d\d+/, RollDice(tempMatch));
   }
-  
+
   //計算算式
   let answer = eval(equation.toString());
     finalStr= equation + ' = ' + answer;
-  
+
   return finalStr;
 
 
-}        
+}
 
 //用來把d給展開成算式的函數
 function RollDice(inputStr){
@@ -184,7 +184,7 @@ function RollDice(inputStr){
   let comStr=inputStr.toString().toLowerCase();
   let finalStr = '(';
 
-  for (let i = 1; i <= comStr.split('d')[0]; i++) { 
+  for (let i = 1; i <= comStr.split('d')[0]; i++) {
     finalStr = finalStr + Dice(comStr.split('d')[1]) + '+';
      }
 
@@ -200,24 +200,24 @@ function RollDice(inputStr){
 //艦娘判定
 function kan(inputStr)
 {
-	
+
 
 	//事故表
 	if (inputStr.toLowerCase().match('act') != null)
 	{
-		
+
 		let rplyArr=['\事故表(1)：太好了！什麼都沒發生。',
 		 '\事故表(2)→意外的反應。將該判定使用的個性的屬性(【長處】跟【弱點】顛倒過來。自己進行的判定以外時，無視此效果',
 		 '\事故表(3)→咦...大失態！對該角色持有【感情值】的角色，全員的應援欄填入標記(チェック)。',
 		 '\事故表(4)→被奇妙的貓附身。在周回(サイクル)或艦隊戰結束前，自己的行為判定受到－１的減值(此效果最多累積到－２減值)。',
 		 '\事故表(5)→好痛！造成１個損傷。如果是在艦隊戰中，跟自己在同個航行序列的己方艦也受到１個損傷。',
 		 '\事故表(6)→嗚嗚，過頭了！自己的【行動力】減少１Ｄ６點。'];
-    return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];	
+    return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
 	//日常表
 	else if(inputStr.toLowerCase().match('evnt') != null)
 	{
-	
+
 		let rplyArr=[
 		 '\日常表(2)→什麼都沒有的日子：「啊，好無聊！提督，做些什麼吧！」除了 （關鍵字） 之外，什麼都沒有的日子。提督選擇對應 （關鍵字） 的指定個性讓幕玩家的ＰＣ做判定。如果想不到就用 《待機／航海７》。\n達成： 幕玩家的ＰＣ，【行動力】回復到最大值。如果已經是最大值，這個集會期間，【行動力】的最大值＋２，現值也回復同值。\n殘念： 幕玩家的ＰＣ的【行動力】變成一半(小數進位)。',
 		 '\日常表(3)→午茶時間：「Tea Time 也是很重要的—！」泡了紅茶，午茶時間。在高雅及良好的時光中渡過。幕玩家的ＰＣ進行 《國外生活／背景12》 判定。\n達成： 幕玩家的ＰＣ，【行動力】回復６點。幕中登場的其它玩家的ＰＣ，【行動力】回復２點。\n殘念： 全部ＰＣ的【行動力】減少２點，對幕玩家的ＰＣ的【感情值】有１點以上的全部角色，在聲援欄填入標記，以「感情表」隨機改變屬性(必為負向屬性)。',
@@ -231,7 +231,7 @@ function kan(inputStr)
 		 '\日常表(11)→海水浴：「大海最棒了呢～大海！」鮮明的藍色海洋。實在很美，讓人忍不住跳進去。噗通！《突擊／戰鬥６》 判定。\n達成： 全體ＰＣ的【行動力】回復２點。幕玩家的ＰＣ獲得１個隨機道具。\n殘念： 幕玩家受到１點損傷，其它全部玩家的【行動力】減少２點。',
 		 '\日常表(12)→My Boom：「飯真香！」自己的角色形象好有點隱薄......。決定了！利用(關鍵字)來確定新的角色形象！提督選擇對應 （關鍵字） 的指定個性讓幕玩家的ＰＣ做判定。如果想不到就用 《口癖／背景６》 。\n達成： 幕玩家的ＰＣ，在這次集會期間，進行跟(關鍵字)相關的扮演，或著在說話的語尾加上(關鍵字)，就能回復１點【行動力】。這個效果在鎮守府階段每個周回只能用１次，在艦隊戰中每一輪只能用１次。\n殘念： 其它所有玩家對幕玩家的ＰＣ的【感情值】減少１點。'];
 		let value = eval(RollDice('2d6').toString());
-		return rplyArr[eval(value)-2];	
+		return rplyArr[eval(value)-2];
 	}
 	//交流表
 	else if(inputStr.toLowerCase().match('evkt') != null)
@@ -247,11 +247,11 @@ function kan(inputStr)
 		'\交流表(9)→堅強的愛：＂沒錯，你需要學會如何更相信我。＂內心撲撲直跳,，你鼓勵了一個優柔寡斷的同伴，這應該有助於她緩解心情。 幕玩家選擇另一位ＰＣ進行《母性／性格４》的判定\n達成：被選擇的 ＰＣ對幕玩家的ＰＣ的【感情值】＋２，且幕玩家回復 【被選擇的ＰＣ的感情值Ｘ２】點行動值。\n殘念：幕玩家與被選擇的 ＰＣ各失去１Ｄ６點行動值',
 		'\交流表(10)→點心時間！：＂我以為我們有點心吃。＂當你們正在做巡邏任務時，有人帶了個(關鍵字)。幕玩家選擇另一位ＰＣ進行對應 （關鍵字） 的指定個性，如果想不到就用《穩重／魅力４》\n達成：被選擇的 ＰＣ對幕玩家的ＰＣ的【感情值】＋１，且被選擇的ＰＣ獲得與關鍵字有關的道具。\n殘念：鎮守府減少１Ｄ６的燃料。',
 		'\交流表(11)→信：＂有你的一封信！＂當你不能直接的對話時，嘗試把你的想法寫在紙上，我希望我的感覺能傳達給她。幕玩家選擇另一位ＰＣ進行《古風／背景５》的判定\n達成：被選擇的 ＰＣ對幕玩家的ＰＣ的【感情值】＋２\n殘念：幕玩家的優點個性改為缺點。',
-		'\交流表(12)→回憶：＂什、什麼？你為什麼不記得了。＂ 你們正在談論關於(關鍵字)的事，那是一段很艱苦的時段，也許不要去問比較好。幕玩家選擇另一位ＰＣ進行對應 （關鍵字） 的指定個性，如果想不到就用《黑歷史／背景４》\n達成：被選擇的 ＰＣ對幕玩家的ＰＣ的【感情值】＋１\n殘念： 每個玩家失去２點行動力， 且對幕玩家的ＰＣ的【感情值】有１點以上的全部ＰＣ，對幕玩家的ＰＣ的聲援欄填上標記，以「感情表」隨機改變屬性(必為負向屬性)。'	
+		'\交流表(12)→回憶：＂什、什麼？你為什麼不記得了。＂ 你們正在談論關於(關鍵字)的事，那是一段很艱苦的時段，也許不要去問比較好。幕玩家選擇另一位ＰＣ進行對應 （關鍵字） 的指定個性，如果想不到就用《黑歷史／背景４》\n達成：被選擇的 ＰＣ對幕玩家的ＰＣ的【感情值】＋１\n殘念： 每個玩家失去２點行動力， 且對幕玩家的ＰＣ的【感情值】有１點以上的全部ＰＣ，對幕玩家的ＰＣ的聲援欄填上標記，以「感情表」隨機改變屬性(必為負向屬性)。'
 		];
 		let value = eval(RollDice('2d6').toString());
-		return rplyArr[eval(value)-2];	
-		
+		return rplyArr[eval(value)-2];
+
 	}
 	//遊玩表
 	else if(inputStr.toLowerCase().match('evat') != null)
@@ -267,11 +267,11 @@ function kan(inputStr)
 		'\遊玩表(9)→卡拉ＯＫ大賽：＂麥克風音量沒問題嗎…？check，１，２……很好！。＂你決定參加一場卡拉ＯＫ大賽，希望你唱的出來。\n\n做《藝能／興趣９》判定\n達成：幕玩家獲得羊羹，且所有聲援欄回復為未使用的狀態。\n殘念：所有玩家受到１點損傷',
 		'\遊玩表(10)→偶像演唱會：＂那珂醬是Center，站在最醒目的位置！＂一個艦娘為了鼓舞士氣而弄了一場演唱會，來帶起大家的精神吧！\n\n玩家使用跟關鍵字相關的個性進行判定，如果想不到就用《偶像／背景８》\n達成：所有對幕玩家有感情的ＰＣ，對她的感情值＋１，且能改變感情的類型。\n殘念：所有對幕玩家有感情的ＰＣ，對她的感情值－１，如果幕玩家用來判定的個性是長處的話，轉換為弱點。',
 		'\遊玩表(11)→展現你的身體：＂呼呼～洗澡真舒服～＂洗澡會讓你開始擁有很好的身材。\n\n做《標誌／背景１１》判定\n達成：幕玩家獲得高速修復材，且增加１點對所選ＰＣ的感情值。\n殘念：所有ＰＣ損失１Ｄ６點行動值，如果幕玩家用來判定的個性是長處的話，轉換為弱點。',
-		'\遊玩表(12)→照顧寵物：＂走吧，連裝砲醬！＂最近非常流行的小吉祥物，大家會把(關鍵字)當作寵物。\n\n玩家使用跟關鍵字相關的個性進行判定，若想不到，使用《生物／興趣4》\n達成：幕玩家獲得一個應急修理專員\n殘念：鎮守府的每一種資源減少３點'	
+		'\遊玩表(12)→照顧寵物：＂走吧，連裝砲醬！＂最近非常流行的小吉祥物，大家會把(關鍵字)當作寵物。\n\n玩家使用跟關鍵字相關的個性進行判定，若想不到，使用《生物／興趣4》\n達成：幕玩家獲得一個應急修理專員\n殘念：鎮守府的每一種資源減少３點'
 		];
 		let value = eval(RollDice('2d6').toString());
-		return rplyArr[eval(value)-2];	
-		
+		return rplyArr[eval(value)-2];
+
 	}
 	//演習表
 	else if(inputStr.toLowerCase().match('evet') != null)
@@ -287,11 +287,11 @@ function kan(inputStr)
 		'\演習表(9)→整備演習：＂Спасибо＂一群艦娘正在船屋中準備進行補給，來修理她們吧！\n\n做《整備／航海１２》判定\n達成：幕玩家在本次團務中，裝甲力增加１（不可疊加）。\n殘念：每位ＰＣ減少１Ｄ６點行動值，如果幕玩家用來判定的個性是長處的話，轉換為弱點。',
 		'\演習表(10)→夜戦演習：＂那麼，來和我夜♀戰吧！＂你正在夜晚訓練中來提高你的夜戰能力，也許使用(關鍵字)會讓你得到意料之外的優點？\n\n玩家使用跟關鍵字相關的個性進行判定，如果想不到就用《夜戰／戰鬥１２》\n達成：本次團務中，幕玩家在夜戰中的命中力與火力增加１（不可疊加）。\n殘念：每位ＰＣ減少１Ｄ６點行動值。',
 		'\演習表(11)→開發演習：＂提督，你會不會想太多了？我們當然需要更多裝備來用啦。＂你來到了工廠想要弄些武器來提高士氣。\n\n做《秘密武器／背景９》判定\n達成：幕玩家在本次團務中，裝備力增加１（不可疊加）。\n殘念：鎮守府內的鋼材跟鋁土各減少５。',
-		'\演習表(12)→防空射撃演習：＂我的防空炮可是最新的型號，來吧！＂(關鍵字)從天空掉了下來，為什麼不用那些來練習射擊呢？\n\n玩家使用跟關鍵字相關的個性進行判定，如果想不到就用《對空戰／戰鬥５》\n達成：幕玩家在本次團務中，所有擁有對空或超對空屬性的裝備，其能力上升１（不可疊加）。\n殘念：鎮守府的彈藥減少１Ｄ６。'	
+		'\演習表(12)→防空射撃演習：＂我的防空炮可是最新的型號，來吧！＂(關鍵字)從天空掉了下來，為什麼不用那些來練習射擊呢？\n\n玩家使用跟關鍵字相關的個性進行判定，如果想不到就用《對空戰／戰鬥５》\n達成：幕玩家在本次團務中，所有擁有對空或超對空屬性的裝備，其能力上升１（不可疊加）。\n殘念：鎮守府的彈藥減少１Ｄ６。'
 		];
 		let value = eval(RollDice('2d6').toString());
-		return rplyArr[eval(value)-2];	
-		
+		return rplyArr[eval(value)-2];
+
 	}
 	//遠征表
 	else if(inputStr.toLowerCase().match('event') != null)
@@ -310,8 +310,8 @@ function kan(inputStr)
 		'\遠征表(12)→大規模考察：＂哼哼，你害怕了嗎？＂你們出發前往一場大規模考察任務並保護(關鍵字)對艦隊的有用性。\n\n幕玩家使用跟關鍵字相關的個性進行判定，如果想不到就用《指揮／航海１０》。\n達成：鎮守府的各項資源都增加１Ｄ６。\n殘念：鎮守府的各項資源都減少１Ｄ６。'
 		];
 		let value = eval(RollDice('2d6').toString());
-		return rplyArr[eval(value)-2];	
-		
+		return rplyArr[eval(value)-2];
+
 	}
 	//作戰表
 	else if(inputStr.toLowerCase().match('evst') != null)
@@ -330,8 +330,8 @@ function kan(inputStr)
 		'\遠征表(12)→知彼知己，百戰不殆：＂原來會用這個跟那個啊，欸～＂便用過去的海戰資料進行敵戰力分析。\n\n幕玩家進行《讀書／趣味5》的判定。\n達成：下次艦隊戰時，敵方的迴避力都減少1點(此效果不可疊加)。\n殘念：下次艦隊戰時，敵方的火力都增加1點。'
 		];
 		let value = eval(RollDice('2d6').toString());
-		return rplyArr[eval(value)-2];	
-		
+		return rplyArr[eval(value)-2];
+
 	}
 	//戰場表
 	else if(inputStr.toLowerCase().match('snz') != null)
@@ -344,12 +344,12 @@ function kan(inputStr)
 		'戰場表(5) → 天候惡劣：艦載機的火力修正－１，『航空攻击』－１',
 		'戰場表(6) → 海象惡劣：全ＰＣ回避－２',
 		];
-		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];	
+		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
 	//暴走表
 	else if(inputStr.toLowerCase().match('rnt') != null)
 	{
-		
+
 		let rplyArr=[
 		'暴走表(1) → 妄想：腦中充滿著各種想像，無法集中注意力。幕結束時或回合結束時，【行動力】減少１點。',
 		'暴走表(2) → 狂戰士：變的好戰，鬥爭本能完全裸露出來，即使受傷也不在意。需要消耗１Ｄ６【行動力】才能進行迴避判定。',
@@ -358,7 +358,7 @@ function kan(inputStr)
 		'暴走表(5) → 慢心：自視甚高，變的自己為了不起。進行行為判定時，２Ｄ６的數字在４以下就算大失誤。',
 		'暴走表(6) → 絕望：完全失去希望，容易受到各種傷害自己受到傷害時，傷害＋１Ｄ６。',
 		];
-		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];	
+		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
 	//特殊戰果表
 	else if(inputStr.toLowerCase().match('spsnt') != null)
@@ -371,7 +371,7 @@ function kan(inputStr)
 		'特殊戰果表(5) → 不需要消費資材，使用１次「艦載機開發表」。',
 		'特殊戰果表(6) → 不需要消費資材，使用１次「特殊開發表」。',
 		];
-		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];	
+		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
 	//戰果表
 	else if(inputStr.toLowerCase().match('snt') != null)
@@ -384,7 +384,7 @@ function kan(inputStr)
 		'戰果表(5) → 獲得[１Ｄ６＋敵艦隊人數]個任意資材。',
 		'戰果表(6) → 各自提升１點對任意角色的【感情值】。',
 		];
-		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];	
+		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
 	//普通開發表
 	else if(inputStr.toLowerCase().match('dvt') != null)
@@ -397,7 +397,7 @@ function kan(inputStr)
 		'普通開發表(5) → 使用裝備３種表決定',
 		'普通開發表(6) → 使用裝備４種表決定'
 		];
-		
+
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
 	//裝備1
@@ -411,7 +411,7 @@ function kan(inputStr)
 		'装備１種表(5) → 20.3cm連装砲（着任ノ書 P.249）',
 		'装備１種表(6) → 魚雷（着任ノ書 P.242）'
 		];
-		
+
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
 	//裝備2
@@ -425,7 +425,7 @@ function kan(inputStr)
 		'裝備２種表(5) → 46cm三連装砲（着任ノ書 P.250）',
 		'裝備２種表(6) → 機銃（着任ノ書 P.252）'
 		];
-		
+
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
 	//裝備3
@@ -439,7 +439,7 @@ function kan(inputStr)
 		'裝備３種表(5) → 電探（着任ノ書 P.252）',
 		'裝備３種表(6) → 25mm連装機銃（着任ノ書 P.252）'
 		];
-		
+
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
 	//裝備4
@@ -453,7 +453,7 @@ function kan(inputStr)
 		'裝備４種表(5) → 61cm四連装(酸素)魚雷（着任ノ書 P.252）',
 		'裝備４種表(6) → 改良型艦本式タービン（着任ノ書 P.252）'
 		];
-		
+
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
 	//艦載機開發表
@@ -482,7 +482,7 @@ function kan(inputStr)
 		'艦載機開發表(23) → 烈風（建造ノ書 壱 P.168）',
 		'艦載機開發表(24) → 零式水上観測機（建造ノ書 壱 P.168）'
 		];
-		
+
 		let value = eval(RollDice('4d6').toString());
 		return rplyArr[eval(value)-4];
 	}
@@ -512,7 +512,7 @@ function kan(inputStr)
 		'炮類開發表(23) → 53cm艦首(酸素)魚雷（建造ノ書 壱 P.168）',
 		'炮類開發表(24) → 九一式徹甲弾（建造ノ書 壱 P.169）'
 		];
-		
+
 		let value = eval(RollDice('4d6').toString());
 		return rplyArr[eval(value)-4];
 	}
@@ -532,7 +532,7 @@ function kan(inputStr)
 		'特殊開發表(11) → 33号対水上電探（建造ノ書 壱 P.169）',
 		'特殊開發表(12) → 増設バルジ(中型艦)（建造ノ書 壱 P.169）',
 		];
-		
+
 		let value = eval(RollDice('2d6').toString());
 		return rplyArr[eval(value)-2];
 	}
@@ -547,7 +547,7 @@ function kan(inputStr)
 		'道具表(5) → 應急修理專員：在自己被擊沉時當作輔助行動使用。自己受的損傷回復到只有３個。',
 		'道具表(6) → 回憶的物品：任何時間都能當作輔助行動使用。選擇任一角色為目標。玩家要說出該道具與目標間回憶的內容，之後目標對自己ＰＣ的【感情值】上升１點。'
 		];
-		
+
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
 	//感情表
@@ -561,7 +561,7 @@ function kan(inputStr)
 		'感情表(5) → 寵愛(いとしい)／想被注意(かまってほしい)',
 		'感情表(6) → 最喜歡(だいすき)／最討厭(だいっきらい)'
 		];
-		
+
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
 	//大規模部隊表
@@ -575,7 +575,7 @@ function kan(inputStr)
 		'大規模部隊表(5) → 敵人多半是在運輸重要的資源。是敵方的『運輸部隊』。威脅力：6',
 		'大規模部隊表(6) → 海面似乎也被染成漆黑一片，大事不妙。是敵方的『主力部隊』。威脅力：12'
 		];
-		
+
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
 	//勝利表
@@ -589,7 +589,7 @@ function kan(inputStr)
 		'艦隊勝利表(5) → 士氣高昂！艦隊決戰時，該ＰＣ的【迴避力】＋１',
 		'艦隊勝利表(6) → 感情加深！伴隨艦對該ＰＣ的【感情值】＋１'
 		];
-		
+
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
 	//敗北表
@@ -603,7 +603,7 @@ function kan(inputStr)
 		'艦隊敗北表(5) → 伴隨艦在作戰行動中失蹤。艦隊決戰開始時，敵方旗艦能從此伴隨艦習得的戰術能力與固有能力中，任選一項，視為在艦隊決戰中習得此能力',
 		'艦隊敗北表(6) → 伴隨艦被轟沉。失去該伴隨艦，ＰＣ骰一次『暴走表』，附加暴走狀態'
 		];
-		
+
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
 	else if(inputStr.toLowerCase().match('help') != null)
@@ -640,7 +640,7 @@ function kan(inputStr)
 	}
 	else
 		return undefined;
-	
+
 }
 //NC擲骰
 //行動判定
@@ -660,14 +660,14 @@ function nc(inputStr)
 		if(line[1]!='')
 		{
 			correctionValue = parseInt(line[1]);
-			
+
 		}
 		for(let i = 0;i<line[0];i++)
 		{
 			diceArr[i] = Math.floor(Math.random()*10+1);
 			resultArr[i] = diceArr[i] + correctionValue;
 		}
-		
+
 		let replyStr = "[";
 		replyStr += diceArr;
 		replyStr += "]";
@@ -699,14 +699,14 @@ function na(inputStr)
 		if(line[1]!='')
 		{
 			correctionValue = parseInt(line[1]);
-			
+
 		}
 		for(let i = 0;i<line[0];i++)
 		{
 			diceArr[i] = Math.floor(Math.random()*10+1);
 			resultArr[i] = diceArr[i] + correctionValue;
 		}
-		
+
 		let replyStr = "[";
 		replyStr += diceArr;
 		replyStr += "]";
@@ -746,7 +746,7 @@ function snm()
 		"09憧憬\n好想變得跟她一樣。那是妳所憧憬的對象，是自己想要成為的理想樣貌的那個人。\n發狂：贗作妄想\n「騙人！姊姊大人才不會說出那樣的話來！妳一定是假的吧！我才不會被妳騙到！」\n效果：戰鬥當中，妳跟「依戀的對象」處於同樣區域的時候，無法宣告「移動以外的戰鬥宣言」，此外妳沒有辦法把「自身」與「依戀對象」以外的單位當成移動對象。",
 		"10信賴\n妳與對方一心同體，是可以把妳的一切交給對方的存在。如果與那個人一同行動的話，那就沒有什麼好怕的。\n發狂：疑心暗鬼\n「……我過去的話，妳會從後面開槍吧。才不會讓妳得逞！」\n效果：除了妳以外的所有姊妹，最大行動值減少1。"
 	];
-	
+
 	return replyArr[Math.floor((Math.random() * (replyArr.length)) + 0)];
 }
 
@@ -787,9 +787,9 @@ function enm()
 
 //NC擲骰結束
 
-function Dice(diceSided){          
+function Dice(diceSided){
           return Math.floor((Math.random() * diceSided) + 1)
-        }              
+        }
 
 
 function choice(inputStr)
@@ -802,7 +802,7 @@ function choice(inputStr)
 	replStr += itemArray[Math.floor((Math.random() * (itemArray.length)) + 0)];
 	return replStr;
 }
-		
+
 function asuka(inputStr)
 {
 	//愛麗絲
@@ -907,6 +907,19 @@ function asuka(inputStr)
 		];
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
+  else if(inputStr.toLowerCase().match(/我回來了/) != null)
+  {
+    rplyArr = [
+      "你回來了，今天也辛苦了呢。",
+      "歡迎回來，晚餐已經準備好了喔，一起吃吧。",
+      "今天很累了對吧，明日香看得出來喔，等下，好好的休息吧。",
+      "主人，歡迎回家，明日香一個人好寂寞呢，但是我還是乖乖的在家裡等喔。",
+      "今天發生了什麼事嗎，等下，說給我聽吧。",
+      "回來了呢，今天也很努力了呢，乖孩子，乖孩子。",
+      "很累嗎，今天的工作，洗完澡後，明日香幫你按摩吧"
+    ];
+    return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
+  }
 	else if(inputStr.toLowerCase().match(/鼓勵|安慰/) != null)
 	{
 		rplyArr = [
@@ -1077,15 +1090,15 @@ function asuka(inputStr)
 		"主人，請不要離開我，明日香，好寂寞～。",
 		"主人，可別太迷上明日香喔"
 		];
-		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];	
-		
+		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
+
 	}
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 }
 
 //運勢 運氣
@@ -1121,7 +1134,7 @@ function luck()
 	else if (dice<=989) return replyArr[11];
 	else if (dice<=1000) return replyArr[12];
 	else return undefined;
-	
+
 }
 
 function help()
@@ -1150,14 +1163,3 @@ function help()
 	replyStr += "https://goo.gl/forms/06LraieQ9pEKxijo2";
 	return  replyStr;
 }
-
-
-
-
-
-
-
-
-
-
-
