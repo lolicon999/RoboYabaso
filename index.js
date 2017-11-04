@@ -922,7 +922,7 @@ function asuka(inputStr)
   }
   //節日對話
   //萬聖節
-  else if(inputStr.toLowerCase().match(/萬聖節/) != null)
+  /*else if(inputStr.toLowerCase().match(/萬聖節/) != null)
 	{
 		rplyArr = [
 			"聖誕節快樂，主人，快把糖果好好交出來",
@@ -964,7 +964,7 @@ function asuka(inputStr)
       "主人，只要明日香在這裡大叫的話，主人就會被從社會上抹殺呢"
 		];
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-	}
+	}*/
 	else if(inputStr.toLowerCase().match(/鼓勵|安慰/) != null)
 	{
 		rplyArr = [
