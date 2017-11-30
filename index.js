@@ -952,7 +952,7 @@ function asuka(inputStr)
 		];
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
-  else if(inputStr.toLowerCase().match(/惡作劇/) != null)
+	else if(inputStr.toLowerCase().match(/惡作劇/) != null)
 	{
 		rplyArr = [
 			"看來主人不想把糖果交出來呢，那就只好對主人處以搔癢之刑了，咕機估嘰咕嘰～",
@@ -965,6 +965,7 @@ function asuka(inputStr)
 		];
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
+	*/
 	else if(inputStr.toLowerCase().match(/鼓勵|安慰/) != null)
 	{
 		rplyArr = [
@@ -1032,6 +1033,7 @@ function asuka(inputStr)
 		];
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
+	
 	/*else if(inputStr.toLowerCase().match('維維') != null)
 	{
 		rplyArr = [
