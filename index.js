@@ -966,6 +966,36 @@ function asuka(inputStr)
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
 	*/
+	else if(inputStr.toLowerCase().match(/聖誕節/) != null)
+	{
+		rplyArr = [
+		"聖誕節快樂，主人，佳節愉快。",
+		"吶～，主人，聖誕節是不是該給我禮物呢，明日香是好孩子對吧。",
+		"主人今年有乖乖當個好孩子嗎，不然可拿不到禮物喔",
+		"主人，聖誕節派對準備好了喔，蛋糕，烤雞，",
+		"主人，你看明日香準備的聖誕樹，很漂亮對吧，可是花了很久佈置的喔。",
+		"主人，明日香身上的聖誕裝很可愛吧，一年只有一次能穿呢。",
+		"主人，你知道steam冬特開始了嗎，還不快點買買買。",
+		"主人，如果能下雪就好了呢，白色聖誕節感覺很不錯對吧。",
+		"主人，聖誕節快樂，接下來就是新年了呢。"
+		]
+		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
+	}
+	else if(inputStr.toLowerCase().match(/禮物/) != null)
+	{
+		rplyArr = [
+		"主人，想要什麼禮物嗎？",
+		"主人，不早點睡的話可是拿不到禮物的喔。",
+		"想要明日香當禮物，主人..你在說甚麼啦(羞",
+		"聖誕快樂，給主人的禮物是明...日...香...喔，開玩笑的(诶嘿。",
+		"不知道會收到什麼禮物，好期待呢。",
+		"主人，這是明日香送你的禮物喔(輕吻臉頰。",
+		"聖誕節快樂，快把禮物通通送給明日香。",
+		"謝謝主人的禮物，能打開嗎？",
+		"給明日香的禮物，謝謝，明日香好高興。"
+		]
+		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
+	}
 	else if(inputStr.toLowerCase().match(/鼓勵|安慰/) != null)
 	{
 		rplyArr = [
