@@ -1,5 +1,5 @@
 {
-  "name": "leoli",
+  "name": "asuka",
   "version": "0.2.0",
   "description": "LeoLi Line Bot",
   "engines": {
@@ -17,5 +17,14 @@
     "LeoLi",
     "Line"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lolicon999/RoboYabaso.git"
+  },
+  "author": "LU",
+  "bugs": {
+    "url": "https://github.com/lolicon999/RoboYabaso/issues"
+  },
+  "homepage": "https://github.com/lolicon999/RoboYabaso#readme"
 }

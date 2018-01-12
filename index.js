@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var https = require('https');
 var app = express();
-
+var firebase = require("firebase");
 var jsonParser = bodyParser.json();
 
 var options = {
@@ -16,6 +16,19 @@ var options = {
   }
 }
 app.set('port', (process.env.PORT || 5000));
+//firebase
+var config = {
+    apiKey: "AIzaSyBnvpOMYh_i3pImc7-mOsWgfY4K_GyriUw",
+    authDomain: "asuka-7cec4.firebaseapp.com",
+    databaseURL: "https://asuka-7cec4.firebaseio.com",
+    projectId: "asuka-7cec4",
+    storageBucket: "asuka-7cec4.appspot.com",
+    messagingSenderId: "275332274521"
+  };
+firebase.initializeApp(config);
+var db = firebase.database();
+
+
 
 // views is directory for all template files
 
@@ -97,9 +110,11 @@ function parseInput(rplyToken, inputStr) {
 		else if (inputStr.toLowerCase().match(/^nnm/)!=null) return nnm(inputStr.toLowerCase());
 		else if (inputStr.toLowerCase().match(/^enm/)!=null) return enm(inputStr.toLowerCase());
 		//nc結束 其他功能開始
-		else if(inputStr.toLowerCase().match(/^隨機/)!=null) return choice(inputStr.toLowerCase());
+    else if(inputStr.toLowerCase().match(/^隨機/)!=null) return choice(inputStr.toLowerCase());
 		else if(inputStr.toLowerCase().match(/^明日香/)!=null) return asuka(inputStr.toLowerCase());
-		else if (inputStr.match(/運勢|運氣/)!=null) return luck();
+  //firebase
+		else if(inputStr.toLowerCase().match(/^add/)!=null) return firebaseAdd(inputStr.toLowerCase());
+    else if (inputStr.match(/運勢|運氣/)!=null) return luck();
 		else if(inputStr.match(/^help/)!=null) return help();
 		else if (inputStr.match(/\w/)!=null && inputStr.toLowerCase().match(/d/)!=null) {
           //擲骰判定
@@ -108,6 +123,20 @@ function parseInput(rplyToken, inputStr) {
 		else return undefined;
 
       }
+
+function firebaseAdd(inputStr)
+{
+  ref = db.ref("/");
+  var value = {
+    Test1: "t1",
+    Test2: "t2"
+  }
+ 
+  ref.set(value);
+  var ref = db.ref("/");
+  ref.once("value", function(snapshot) {console.log(snapshot.val());});
+  return "add successfully"
+}
 
 
 
