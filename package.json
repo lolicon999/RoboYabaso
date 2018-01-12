@@ -10,8 +10,9 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "body-parser": "1.15.2",
     "express": "4.13.3",
-    "body-parser": "1.15.2"
+    "firebase": "^4.8.2"
   },
   "keywords": [
     "LeoLi",
