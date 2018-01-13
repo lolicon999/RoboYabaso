@@ -132,6 +132,7 @@ function getDatabase()
 
     firebase.database().ref('/').once("value").then(function(snapshot){
 	    console.log(snapshot.val());
+	    people = snapshot.val()[0];
     });
     
     return "獲取資料完成";
