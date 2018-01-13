@@ -127,7 +127,7 @@ function parseInput(rplyToken, inputStr) {
 function readDatabase()
 {
   //return "明日香好喜歡主人";
-  var db = ;
+  
  
   //ref = db.ref("/numOfPeople");
   
