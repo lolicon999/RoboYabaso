@@ -142,14 +142,17 @@ function readDatabase()
  //firebase.database().ref('/').set({numOfPeople:500});
  replyString += firebase.database().ref('/').once("value").then(function(dataSnapshot){
  	console.log("目前人數" + dataSnapshot.val().numOfPeople);
-	people = dataSnapshot.val().numOfPeople;
-	return dataSnapshot.val().numOfPeople +"人";
+	setPeople(dataSnapshot.val().numOfPeople);
+	//return dataSnapshot.val().numOfPeople +"人";
  });
 	 
 
   return replyString + people;
 }
-
+function setPeople(value)
+{
+    people = value;
+}
 
 
 function nomalDiceRoller(inputStr){
