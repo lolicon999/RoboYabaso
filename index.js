@@ -140,9 +140,12 @@ function readDatabase()
   	console.log("in");
   });*/
  //firebase.database().ref('/').set({numOfPeople:500});
- replyString += firebase.database().ref('/').once("value").then(function(dataSnapshot){
- 	console.log("目前人數" + dataSnapshot.val().numOfPeople);
-	setPeople(dataSnapshot.val().numOfPeople);
+ console.log("in the function");
+  replyString += firebase.database().ref('/').once("value").then(function(dataSnapshot){
+ 	//console.log("目前人數" + dataSnapshot.val().numOfPeople);
+	console.log("in once");
+	  setPeople(dataSnapshot);
+	console.log("set people");
 	//return dataSnapshot.val().numOfPeople +"人";
  });
 	 
@@ -151,7 +154,7 @@ function readDatabase()
 }
 function setPeople(value)
 {
-    people = value;
+    people = value.val().numOfPeople;
 }
 
 
