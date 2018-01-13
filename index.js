@@ -110,6 +110,8 @@ function parseInput(rplyToken, inputStr) {
 		else if (inputStr.toLowerCase().match(/^nnm/)!=null) return nnm(inputStr.toLowerCase());
 		else if (inputStr.toLowerCase().match(/^enm/)!=null) return enm(inputStr.toLowerCase());
 		//nc結束 其他功能開始
+		
+		else if(inputStr.toLowerCase().match(/^明日香/)!=null) return asuka(inputStr.toLowerCase());
 		else if(inputStr.toLowerCase().match(/^隨機/)!=null) return choice(inputStr.toLowerCase());
                 else if(inputStr.toLowerCase().match(/^人數/)!=null) return readDatabase(inputStr.toLowerCase());
                 else if(inputStr.toLowerCase().match(/^初始/)!=null) return getDatabase(inputStr.toLowerCase());
