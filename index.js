@@ -132,6 +132,7 @@ function getDatabase()
 
     firebase.database().ref('/').once("value").then(function(snapshot){
 	    console.log(snapshot.val());
+	    console.log(snapshot.val()[0]);
 	    people = snapshot.val()[0];
     });
     
