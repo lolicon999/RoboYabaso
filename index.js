@@ -141,18 +141,23 @@ function readDatabase()
   	console.log("in");
   });*/
  //firebase.database().ref('/').set({numOfPeople:500});
- firebase.database().ref('/').once("value").then(function(dataSnapshot){
- 	console.log("目前人數" + dataSnapshot.val().numOfPeople);
-	people = dataSnapshop.val().numOfPeople; 
-	flag = false;
+// firebase.database().ref('/').once("value").then(function(dataSnapshot){
+ //	console.log("目前人數" + dataSnapshot.val().numOfPeople);
+//	people = dataSnapshop.val().numOfPeople; 
+//	flag = false;
 	//return dataSnapshot.val().numOfPeople +"人";
- });
-  console.log(people);	 
+// });
+ // console.log(people);	 
 	
-  while(flag)
-  {
-  
-  }
+firebase.database().ref('/').once("value",snapshot=>{
+	if(snap)
+	{
+		people = snapshot.val().numOfPeople;
+		console.log("get it");
+	}
+})
+
+
   return replyString + people;
 }
 function setPeople(value)
