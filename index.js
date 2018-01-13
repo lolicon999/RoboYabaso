@@ -131,16 +131,16 @@ function readDatabase()
  
   //ref = db.ref("/numOfPeople");
   
-  var replyString = "現在有";
+  var replyString = "目前人數";
   //var ref = db.ref("/");
   /*firebase.database().ref('/').once('value').then( function(dataSnapshot) {
     	replyString += dataSnapshot.val().toString();
   	replyString +="人";
   	console.log("in");
   });*/
- firebase.database().ref('/').set({numOfPeople:500});
+ //firebase.database().ref('/').set({numOfPeople:500});
  replyString += firebase.database().ref('/').once("value").then(function(dataSnapshot){
- 	console.log(dataSnapshot.val());
+ 	console.log("目前人數" + dataSnapshot.val().numOfPeople);
 	return dataSnapshot.val().numOfPeople +"人";
  });
 	 
