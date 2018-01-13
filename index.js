@@ -110,7 +110,7 @@ function parseInput(rplyToken, inputStr) {
 		//nc結束 其他功能開始
 		else if(inputStr.toLowerCase().match(/^隨機/)!=null) return choice(inputStr.toLowerCase());
 		else if(inputStr.toLowerCase().match(/^明日香/)!=null) return asuka(inputStr.toLowerCase());
-    else if(inputStr.toLowerCase().match(/^firebase/)!=null) return addData(inputStr.toLowerCase());
+                else if(inputStr.toLowerCase().match(/^人數/)!=null) return readDatabase(inputStr.toLowerCase());
 		else if (inputStr.match(/運勢|運氣/)!=null) return luck();
 		else if(inputStr.match(/^help/)!=null) return help();
 		else if (inputStr.match(/\w/)!=null && inputStr.toLowerCase().match(/d/)!=null) {
@@ -122,23 +122,19 @@ function parseInput(rplyToken, inputStr) {
       }
 
 //firebase function
-function addData()
+function readDatabase()
 {
   var db = firebase.database();
  
   ref = db.ref("/");
-  var value = {
-    Test1: "t1",
-    Test2: "t2"
-  }
- 
-  ref.set(value);
- 
+  
+  var num = ref.once('numOfPeople');
+
   //var ref = db.ref("/");
   ref.once("value", function(snapshot) {
       console.log(snapshot.val());
       }); 
-  
+  return  "現在人數是"+num+"人。";
 }
 
 
