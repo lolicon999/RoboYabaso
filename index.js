@@ -124,6 +124,7 @@ function parseInput(rplyToken, inputStr) {
       }
 
 //firebase function
+var people = 0;
 function readDatabase()
 {
   //return "明日香好喜歡主人";
@@ -141,11 +142,12 @@ function readDatabase()
  //firebase.database().ref('/').set({numOfPeople:500});
  replyString += firebase.database().ref('/').once("value").then(function(dataSnapshot){
  	console.log("目前人數" + dataSnapshot.val().numOfPeople);
+	people = dataSnapshot.val().numOfPeople;
 	return dataSnapshot.val().numOfPeople +"人";
  });
 	 
 
-  return replyString;
+  return replyString + people;
 }
 
 
