@@ -131,7 +131,7 @@ function readDatabase()
  
   //ref = db.ref("/numOfPeople");
   
-  var replyString = "有進來";
+  var replyString = "現在有";
   //var ref = db.ref("/");
   /*firebase.database().ref('/').once('value').then( function(dataSnapshot) {
     	replyString += dataSnapshot.val().toString();
@@ -140,7 +140,8 @@ function readDatabase()
   });*/
  firebase.database().ref('/').set({numOfPeople:500});
  replyString += firebase.database().ref('/').once("value").then(function(dataSnapshot){
- 	return dataSnapshot.val().numOfPeople;
+ 	console.log(dataSnapshot.val());
+	return dataSnapshot.val().numOfPeople +"人";
  });
 	 
 
