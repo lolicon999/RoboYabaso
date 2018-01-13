@@ -124,14 +124,14 @@ function parseInput(rplyToken, inputStr) {
 //firebase function
 function readDatabase()
 {
-  
+  //return "明日香好喜歡主人";
   var db = firebase.database();
  
   ref = db.ref("/");
   
   let replyString = "現在有";
   //var ref = db.ref("/");
-  ref.once("numOfPeople", function(snapshot) {
+  ref.once("value", function(snapshot) {
     	replyString += snapshot.val().numOfPeople;
   	replyString +="人";
       }); 
