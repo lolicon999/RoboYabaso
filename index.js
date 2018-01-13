@@ -129,12 +129,12 @@ function readDatabase()
   //return "明日香好喜歡主人";
   var db = ;
  
-  ref = db.ref("/numOfPeople");
+  //ref = db.ref("/numOfPeople");
   
-  let replyString = "現在有";
+  var replyString = "現在有";
   //var ref = db.ref("/");
   firebase.database().ref('/').once('value').then( function(dataSnapshot) {
-    	replyString += dataSnapshot.val();
+    	replyString += dataSnapshot.val().toString();
   	replyString +="人";
   	console.log("in");
   }); 
