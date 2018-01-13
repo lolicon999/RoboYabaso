@@ -111,8 +111,8 @@ function parseInput(rplyToken, inputStr) {
 		else if (inputStr.toLowerCase().match(/^enm/)!=null) return enm(inputStr.toLowerCase());
 		//nc結束 其他功能開始
 		else if(inputStr.toLowerCase().match(/^隨機/)!=null) return choice(inputStr.toLowerCase());
-		else if(inputStr.toLowerCase().match(/^明日香/)!=null) return asuka(inputStr.toLowerCase());
                 else if(inputStr.toLowerCase().match(/^人數/)!=null) return readDatabase(inputStr.toLowerCase());
+                else if(inputStr.toLowerCase().match(/^初始/)!=null) return getDatabase(inputStr.toLowerCase());
 		else if (inputStr.match(/運勢|運氣/)!=null) return luck();
 		else if(inputStr.match(/^help/)!=null) return help();
 		else if (inputStr.match(/\w/)!=null && inputStr.toLowerCase().match(/d/)!=null) {
@@ -124,24 +124,24 @@ function parseInput(rplyToken, inputStr) {
       }
 
 //firebase function
-var people = 0;
+var people = "";
+
+function getDatabase()
+{
+    firebase.database.ref('/').once("value").then(function(snapshot){
+    	people = snapshot.val()[0];
+    });
+    return "獲取資料完成";
+}
+
+
+
 function readDatabase()
 {
-  
- 
-  //ref = db.ref("/numOfPeople");
-  
-  var replyString = "目前人數";
-  //setPeople();
-  firebase.database().ref('/').once("value").than(function(snapshot){
-  	people = snapshot.val().numOfPeople;
-  	console.log("people is "+people);
-  	return "people is "+ people;
-  });
+    return "現在人數"+ people;
 
 
-  
- // return replyString + people;
+
 }
 function setPeople()
 {
