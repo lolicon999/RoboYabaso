@@ -129,7 +129,7 @@ function readDatabase()
   //return "明日香好喜歡主人";
   var db = firebase.database();
  
-  ref = db.ref("/");
+  ref = db.ref("/numOfPeople");
   
   let replyString = "現在有";
   //var ref = db.ref("/");
