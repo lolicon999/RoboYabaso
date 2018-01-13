@@ -130,7 +130,9 @@ var people = "0";
 function getDatabase()
 {
 
-    firebase.database.ref('/').once("value").than(function(snapshot){console.log(snapshot.val());});
+    firebase.database().ref('/').once("value").than(function(snapshot){
+	    console.log(snapshot.val());
+    });
     
     return "獲取資料完成";
 }
