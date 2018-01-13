@@ -133,6 +133,7 @@ function readDatabase()
   //ref = db.ref("/numOfPeople");
   
   var replyString = "目前人數";
+  var flag= true;
   //var ref = db.ref("/");
   /*firebase.database().ref('/').once('value').then( function(dataSnapshot) {
     	replyString += dataSnapshot.val().toString();
@@ -143,10 +144,15 @@ function readDatabase()
  firebase.database().ref('/').once("value").then(function(dataSnapshot){
  	console.log("目前人數" + dataSnapshot.val().numOfPeople);
 	people = dataSnapshop.val().numOfPeople; 
+	flag = false;
 	//return dataSnapshot.val().numOfPeople +"人";
  });
   console.log(people);	 
-
+	
+  while(flag)
+  {
+  
+  }
   return replyString + people;
 }
 function setPeople(value)
