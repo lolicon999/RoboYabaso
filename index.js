@@ -127,16 +127,16 @@ function parseInput(rplyToken, inputStr) {
 function readDatabase()
 {
   //return "明日香好喜歡主人";
-  var db = firebase.database();
+  var db = ;
  
   ref = db.ref("/numOfPeople");
   
   let replyString = "現在有";
   //var ref = db.ref("/");
-  ref.once('value').then( function(dataSnapshot) {
-    	replyString += dataSnapshot.val().numOfPeople;
+  firebase.database().ref('/').once('value').then( function(dataSnapshot) {
+    	replyString += dataSnapshot.val();
   	replyString +="人";
-  console.log("in");
+  	console.log("in");
   }); 
   return replyString;
 }
