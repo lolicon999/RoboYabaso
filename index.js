@@ -140,7 +140,7 @@ function readDatabase()
   });*/
  firebase.database().ref('/').set({numOfPeople:500});
  replyString += firebase.database().ref('/').once("value").then(function(dataSnapshot){
- 	return dataSnapshot.val();
+ 	return dataSnapshot.val().numOfPeople;
  });
 	 
 
