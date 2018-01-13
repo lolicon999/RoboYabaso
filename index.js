@@ -153,7 +153,7 @@ setPeople();
   console.log(people);	 
   return replyString + people;
 }
-function setPeople(value)
+function setPeople()
 {
     firebase.database().ref('/').once("value",snapshot=>{
 	if(snapshot)
