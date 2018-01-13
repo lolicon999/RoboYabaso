@@ -133,7 +133,8 @@ function getDatabase()
     firebase.database().ref('/').once("value").then(function(snapshot){
 	    console.log(snapshot.val());
 	    let s = snapshot.val().toString();
-	    s.slice(14,18);
+	    console.log("s = "+s);
+	    //s.slice(14,18);
 	    people = s;
     });
     
