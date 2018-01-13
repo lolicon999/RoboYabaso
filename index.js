@@ -147,7 +147,6 @@ function readDatabase()
 //	flag = false;
 	//return dataSnapshot.val().numOfPeople +"人";
 // });
- // console.log(people);	 
 	
 firebase.database().ref('/').once("value",snapshot=>{
 	if(snapshot)
@@ -159,6 +158,7 @@ firebase.database().ref('/').once("value",snapshot=>{
 
 
 
+  console.log(people);	 
   return replyString + people;
 }
 function setPeople(value)
