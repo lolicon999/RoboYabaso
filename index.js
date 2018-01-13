@@ -144,7 +144,7 @@ function readDatabase()
  });
 	 
 
-  //return replyString;
+  return replyString;
 }
 
 
