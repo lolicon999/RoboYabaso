@@ -128,13 +128,13 @@ function readDatabase()
  
   ref = db.ref("/");
   
-  var num = ref.once('numOfPeople');
-
+  let replyString = "現在有";
   //var ref = db.ref("/");
-  ref.once("value", function(snapshot) {
-      console.log(snapshot.val());
+  ref.once("numOfPeople", function(snapshot) {
+    	replyString += snapshot.val().numOfPeople;
+  	replyString +="人";
       }); 
-  return  "現在人數是"+num+"人。";
+  return replyString;
 }
 
 
