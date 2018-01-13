@@ -126,14 +126,15 @@ function parseInput(rplyToken, inputStr) {
       }
 
 //firebase function
-var people = "0";
+var people = "";
 function getDatabase()
 {
 
     firebase.database().ref('/').once("value").then(function(snapshot){
 	    console.log(snapshot.val());
-	    console.log(snapshot.val()[0]);
-	    people = snapshot.val()[0];
+	    let s = snapshot.val().toString();
+	    s.slice(14,18);
+	    people = s;
     });
     
     return "獲取資料完成";
