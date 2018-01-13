@@ -140,12 +140,12 @@ function readDatabase()
   	console.log("in");
   });*/
  //firebase.database().ref('/').set({numOfPeople:500});
-  replyString += firebase.database().ref('/').once("value").then(function(dataSnapshot){
+ firebase.database().ref('/').once("value").then(function(dataSnapshot){
  	//console.log("目前人數" + dataSnapshot.val().numOfPeople);
-	people = dataSnapshop.val().numOfPeople;
+	people = dataSnapshop.val().numOfPeople; 
 	//return dataSnapshot.val().numOfPeople +"人";
  });
-	 
+  console.log(people);	 
 
   return replyString + people;
 }
