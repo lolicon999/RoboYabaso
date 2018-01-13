@@ -124,6 +124,7 @@ function parseInput(rplyToken, inputStr) {
 //firebase function
 function readDatabase()
 {
+  
   var db = firebase.database();
  
   ref = db.ref("/");
