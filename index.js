@@ -133,36 +133,19 @@ function readDatabase()
   //ref = db.ref("/numOfPeople");
   
   var replyString = "目前人數";
-  var flag= true;
-  //var ref = db.ref("/");
-  /*firebase.database().ref('/').once('value').then( function(dataSnapshot) {
-    	replyString += dataSnapshot.val().toString();
-  	replyString +="人";
-  	console.log("in");
-  });*/
- //firebase.database().ref('/').set({numOfPeople:500});
-// firebase.database().ref('/').once("value").then(function(dataSnapshot){
- //	console.log("目前人數" + dataSnapshot.val().numOfPeople);
-//	people = dataSnapshop.val().numOfPeople; 
-//	flag = false;
-	//return dataSnapshot.val().numOfPeople +"人";
-// });
-	
-setPeople();
+  //setPeople();
+  firebase.database().ref('/').once("value").than(function(snapshot){
+  	people = snapshot.val().numOfPeople;
+  	console.log("people is "+people);
+  }).then(function(){return "end is "+people;});
+
 
   console.log(people);	 
-  return replyString + people;
+ // return replyString + people;
 }
 function setPeople()
 {
-    firebase.database().ref('/').once("value",snapshot=>{
-	if(snapshot)
-	{
-		people = snapshot.val().numOfPeople;
-  console.log("in set people :"+people);	 
-	}
-});
-
+ 
 }
 
 
