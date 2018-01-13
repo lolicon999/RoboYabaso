@@ -127,6 +127,7 @@ function parseInput(rplyToken, inputStr) {
 
 //firebase
 var people = 0;
+function getDatabase()
 {
 
     firebase.database().ref('/').once("value").then(function(snapshot){
