@@ -141,7 +141,7 @@ function readDatabase()
   });*/
  //firebase.database().ref('/').set({numOfPeople:500});
  firebase.database().ref('/').once("value").then(function(dataSnapshot){
- 	//console.log("目前人數" + dataSnapshot.val().numOfPeople);
+ 	console.log("目前人數" + dataSnapshot.val().numOfPeople);
 	people = dataSnapshop.val().numOfPeople; 
 	//return dataSnapshot.val().numOfPeople +"人";
  });
