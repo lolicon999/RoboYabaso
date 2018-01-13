@@ -131,7 +131,7 @@ function readDatabase()
   
   let replyString = "現在有";
   //var ref = db.ref("/");
-  ref.once("value", function(snapshot) {
+  ref.once("value").then( function(snapshot) {
     	replyString += snapshot.val().numOfPeople;
   	replyString +="人";
       }); 
