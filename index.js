@@ -130,7 +130,7 @@ var people = "0";
 function getDatabase()
 {
 
-    firebase.database().ref('/').once("value").than(function(snapshot){
+    firebase.database().ref('/').once("value").then(function(snapshot){
 	    console.log(snapshot.val());
     });
     
