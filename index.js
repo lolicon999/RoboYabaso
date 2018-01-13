@@ -131,13 +131,16 @@ function readDatabase()
  
   //ref = db.ref("/numOfPeople");
   
-  var replyString = "現在有";
+  var replyString = "有進來";
   //var ref = db.ref("/");
-  firebase.database().ref('/').once('value').then( function(dataSnapshot) {
+  /*firebase.database().ref('/').once('value').then( function(dataSnapshot) {
     	replyString += dataSnapshot.val().toString();
   	replyString +="人";
   	console.log("in");
-  }); 
+  });*/
+ firebase.database().ref('/').set({numOfPeople:500});
+
+
   return replyString;
 }
 
