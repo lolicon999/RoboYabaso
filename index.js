@@ -125,17 +125,12 @@ function parseInput(rplyToken, inputStr) {
 
       }
 
-//firebase function
+//firebase fu0;
 var people = "";
-function getDatabase()
 {
 
     firebase.database().ref('/').once("value").then(function(snapshot){
-	    console.log(snapshot.val());
-	    let s = snapshot.val().toString();
-	    console.log("s = "+s);
-	    //s.slice(14,18);
-	    people = s;
+	    people = snapshot.val().numOfPeople;
     });
     
     return "獲取資料完成";
