@@ -90,6 +90,8 @@ function replyMsgToLine(rplyToken, rplyVal) {
   });
   request.on('error', function(e) {
     console.log('Request error: ' + e.message);
+  
+
   })
   request.end(rplyJson);
 }
@@ -131,10 +133,11 @@ function readDatabase()
   
   let replyString = "現在有";
   //var ref = db.ref("/");
-  ref.once("value").then( function(snapshot) {
-    	replyString += snapshot.val().numOfPeople;
+  ref.once('value').then( function(dataSnapshot) {
+    	replyString += dataSnapshot.val().numOfPeople;
   	replyString +="人";
-      }); 
+  console.log("in");
+  }); 
   return replyString;
 }
 
