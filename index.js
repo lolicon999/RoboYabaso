@@ -159,7 +159,7 @@ function setPeople()
 	if(snapshot)
 	{
 		people = snapshot.val().numOfPeople;
-		console.log("get it");
+  console.log("in set people :"+people);	 
 	}
 });
 
