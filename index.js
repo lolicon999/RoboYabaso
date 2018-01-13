@@ -127,7 +127,6 @@ function parseInput(rplyToken, inputStr) {
 var people = 0;
 function readDatabase()
 {
-  //return "明日香好喜歡主人";
   
  
   //ref = db.ref("/numOfPeople");
@@ -137,7 +136,7 @@ function readDatabase()
   firebase.database().ref('/').once("value").than(function(snapshot){
   	people = snapshot.val().numOfPeople;
   	console.log("people is "+people);
-  }).then(function(){return "end is "+people;});
+  }).then(snapshot=>{ return "end is "+people;});
 
 
   console.log(people);	 
