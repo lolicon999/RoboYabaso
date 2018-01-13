@@ -136,10 +136,11 @@ function readDatabase()
   firebase.database().ref('/').once("value").than(function(snapshot){
   	people = snapshot.val().numOfPeople;
   	console.log("people is "+people);
-  }).then(snapshot=>{ return "end is "+people;});
+  	return "people is "+ people;
+  });
 
 
-  console.log(people);	 
+  
  // return replyString + people;
 }
 function setPeople()
