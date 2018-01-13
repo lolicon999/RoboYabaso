@@ -127,14 +127,11 @@ function parseInput(rplyToken, inputStr) {
 
 //firebase function
 var people = "0";
-
 function getDatabase()
 {
-    firebase.database.ref('/').once("value").then(function(snapshot){
-    	people = snapshot.val()[0];
-    	console.log(snapshot.val()[0]);
-    });
-    console.log("get it");
+
+    firebase.database.ref('/').once("value").than(function(snapshot){console.log(snapshot.val());});
+    
     return "獲取資料完成";
 }
 
