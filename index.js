@@ -155,7 +155,8 @@ firebase.database().ref('/').once("value",snapshot=>{
 		people = snapshot.val().numOfPeople;
 		console.log("get it");
 	}
-})
+});
+
 
 
   return replyString + people;
