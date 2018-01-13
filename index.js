@@ -150,7 +150,7 @@ function readDatabase()
  // console.log(people);	 
 	
 firebase.database().ref('/').once("value",snapshot=>{
-	if(snap)
+	if(snapshot)
 	{
 		people = snapshot.val().numOfPeople;
 		console.log("get it");
