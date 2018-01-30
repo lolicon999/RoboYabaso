@@ -103,6 +103,8 @@ function parseInput(rplyToken, inputStr) {
         }
 		//艦娘擲骰
 		if(inputStr.toLowerCase().match(/^kan/)!= null) return kan(inputStr.toLowerCase());
+		//黑鳥小姐
+        	//else if(inputStr.toLowerCase().match(/^\dlb/)!= null) return ladyBlackBird(inputStr.toLowerCase());
 		//NC擲骰
 		else if (inputStr.toLowerCase().match(/^\dnc/)!=null) return nc(inputStr.toLowerCase());
 		else if (inputStr.toLowerCase().match(/^\dna/)!=null) return na(inputStr.toLowerCase());
@@ -125,33 +127,9 @@ function parseInput(rplyToken, inputStr) {
 
       }
 
-//firebase
-var people = 0;
-function getDatabase()
-{
-
-    firebase.database().ref('/').once("value").then(function(snapshot){
-	    console.log(snapshot.val().Newpeople);
-	    people = snapshot.val().Newpeople;
-    	    	
-    });
     
-    return "獲取資料完成";
-}
 
 
-
-function readDatabase()
-{
-    return "現在人數"+ people;
-
-
-
-}
-function setPeople()
-{
- 
-}
 
 
 function nomalDiceRoller(inputStr){
@@ -236,8 +214,35 @@ function RollDice(inputStr){
 }
 
 
+//黑鳥小姐
+/*
+function ladyBlackBird（inputStr)
+{
+        
+    let replyStr = "黑鳥小姐系統擲骰：";
+    let num = parseInt(inputStr.split('lb')[0]);
+    let diceList = [];
+    let successTime = 0;
+    for(i = 0;i<num;i++)
+    {
+        ramNum = Math.floor((Math.random()*6)+1);
+        if(ramNum>=4)
+        {
+            successTime+=1;
+        }
+        diceList.push(ramNum);
+    }
+    diceList.sort();
+    replyStr += diceList.toString();
+    replyStr += "，共成功";
+    replyStr += successTime;
+    replyStr += "次";
+    
+    
+    return replyStr;
+}
 
-
+*/
 
 
 //艦娘判定
@@ -255,7 +260,7 @@ function kan(inputStr)
 		 '\事故表(4)→被奇妙的貓附身。在周回(サイクル)或艦隊戰結束前，自己的行為判定受到－１的減值(此效果最多累積到－２減值)。',
 		 '\事故表(5)→好痛！造成１個損傷。如果是在艦隊戰中，跟自己在同個航行序列的己方艦也受到１個損傷。',
 		 '\事故表(6)→嗚嗚，過頭了！自己的【行動力】減少１Ｄ６點。'];
-    return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
+    		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
 	//日常表
 	else if(inputStr.toLowerCase().match('evnt') != null)
