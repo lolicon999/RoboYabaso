@@ -104,7 +104,7 @@ function parseInput(rplyToken, inputStr) {
 		//艦娘擲骰
 		if(inputStr.toLowerCase().match(/^kan/)!= null) return kan(inputStr.toLowerCase());
 		//黑鳥小姐
-        	//else if(inputStr.toLowerCase().match(/^\dlb/)!= null) return ladyBlackBird(inputStr.toLowerCase());
+        else if(inputStr.toLowerCase().match(/^\dlb/)!= null) return ladyBlackBird(inputStr.toLowerCase());
 		//NC擲骰
 		else if (inputStr.toLowerCase().match(/^\dnc/)!=null) return nc(inputStr.toLowerCase());
 		else if (inputStr.toLowerCase().match(/^\dna/)!=null) return na(inputStr.toLowerCase());
