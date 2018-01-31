@@ -215,10 +215,10 @@ function RollDice(inputStr){
 
 
 //黑鳥小姐
-/*
-function ladyBlackBird（inputStr)
+function ladyBlackBird(inputStr)
 {
         
+   
     let replyStr = "黑鳥小姐系統擲骰：";
     let num = parseInt(inputStr.split('lb')[0]);
     let diceList = [];
@@ -233,17 +233,16 @@ function ladyBlackBird（inputStr)
         diceList.push(ramNum);
     }
     diceList.sort();
+    replyStr += "［";
     replyStr += diceList.toString();
-    replyStr += "，共成功";
+    replyStr += "］";
+    replyStr += "=＞共成功";
     replyStr += successTime;
     replyStr += "次";
     
     
     return replyStr;
 }
-
-*/
-
 
 //艦娘判定
 function kan(inputStr)
