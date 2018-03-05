@@ -185,7 +185,7 @@ function DiceCal(inputStr){
   let equation = DiceToRoll;
   while(equation.match(/\d+d\d+/)!=null) {
     let tempMatch = equation.match(/\d+d\d+/);
-    if(tempMatch.toString()..split('d')[1]==0)return "沒有0面骰這種東西啦，笨笨主人。";
+    if(tempMatch.toString().split('d')[1]==0)return "沒有0面骰這種東西啦，笨笨主人。";
     if (tempMatch.toString().split('d')[0]>200) return '為什麼會需要丟到200次以上呢，明日香不明白。';
     if (tempMatch.toString().split('d')[1]==1 || tempMatch.toString().split('d')[1]>500) return '我不會D1跟D500以上的數字呢，而且為什麼會用到這麼大的骰子呢';
     equation = equation.replace(/\d+d\d+/, RollDice(tempMatch));
