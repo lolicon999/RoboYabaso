@@ -24,7 +24,7 @@ var config = {
     databaseURL: "https://asuka-7cec4.firebaseio.com",
  storageBucket: "asuka-7cec4.appspot.com",
 };
- 
+
 firebase.initializeApp(config);
 
 
@@ -90,7 +90,7 @@ function replyMsgToLine(rplyToken, rplyVal) {
   });
   request.on('error', function(e) {
     console.log('Request error: ' + e.message);
-  
+
 
   })
   request.end(rplyJson);
@@ -112,7 +112,7 @@ function parseInput(rplyToken, inputStr) {
 		else if (inputStr.toLowerCase().match(/^nnm/)!=null) return nnm(inputStr.toLowerCase());
 		else if (inputStr.toLowerCase().match(/^enm/)!=null) return enm(inputStr.toLowerCase());
 		//nc結束 其他功能開始
-		
+
 		else if(inputStr.toLowerCase().match(/^明日香/)!=null) return asuka(inputStr.toLowerCase());
 		else if(inputStr.toLowerCase().match(/^隨機/)!=null) return choice(inputStr.toLowerCase());
                 else if(inputStr.toLowerCase().match(/^人數/)!=null) return readDatabase(inputStr.toLowerCase());
@@ -127,7 +127,7 @@ function parseInput(rplyToken, inputStr) {
 
       }
 
-    
+
 
 
 
@@ -185,6 +185,7 @@ function DiceCal(inputStr){
   let equation = DiceToRoll;
   while(equation.match(/\d+d\d+/)!=null) {
     let tempMatch = equation.match(/\d+d\d+/);
+    if(tempMatch.toString()..split('d')[1]==0)return "沒有0面骰這種東西啦，笨笨主人。";
     if (tempMatch.toString().split('d')[0]>200) return '為什麼會需要丟到200次以上呢，明日香不明白。';
     if (tempMatch.toString().split('d')[1]==1 || tempMatch.toString().split('d')[1]>500) return '我不會D1跟D500以上的數字呢，而且為什麼會用到這麼大的骰子呢';
     equation = equation.replace(/\d+d\d+/, RollDice(tempMatch));
@@ -217,8 +218,8 @@ function RollDice(inputStr){
 //黑鳥小姐
 function ladyBlackBird(inputStr)
 {
-        
-   
+
+
     let replyStr = "黑鳥小姐系統擲骰：";
     let num = parseInt(inputStr.split('lb')[0]);
     let diceList = [];
@@ -239,8 +240,8 @@ function ladyBlackBird(inputStr)
     replyStr += "=＞共成功";
     replyStr += successTime;
     replyStr += "次";
-    
-    
+
+
     return replyStr;
 }
 
@@ -1080,7 +1081,7 @@ function asuka(inputStr)
 		];
 		return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 	}
-	
+
 	/*else if(inputStr.toLowerCase().match('維維') != null)
 	{
 		rplyArr = [
